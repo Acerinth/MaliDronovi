@@ -1,6 +1,6 @@
 ﻿namespace DronePositioningSimulator
 {
-    partial class frmMain
+    partial class frmGlavna
     {
         /// <summary>
         /// Required designer variable.
@@ -39,6 +39,9 @@
             this.rbRucno = new System.Windows.Forms.RadioButton();
             this.dgvPostojeciDronovi = new System.Windows.Forms.DataGridView();
             this.grpNoviDron = new System.Windows.Forms.GroupBox();
+            this.btnBoja = new System.Windows.Forms.Button();
+            this.txtBoja = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtSignal = new System.Windows.Forms.TextBox();
             this.btnSpremiDron = new System.Windows.Forms.Button();
@@ -56,9 +59,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnObrisi = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtBoja = new System.Windows.Forms.TextBox();
-            this.btnBoja = new System.Windows.Forms.Button();
             this.btnPokreni = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostojeciDronovi)).BeginInit();
@@ -183,6 +183,32 @@
             this.grpNoviDron.TabIndex = 9;
             this.grpNoviDron.TabStop = false;
             this.grpNoviDron.Text = "Novi dron";
+            // 
+            // btnBoja
+            // 
+            this.btnBoja.Location = new System.Drawing.Point(197, 239);
+            this.btnBoja.Name = "btnBoja";
+            this.btnBoja.Size = new System.Drawing.Size(38, 33);
+            this.btnBoja.TabIndex = 16;
+            this.btnBoja.UseVisualStyleBackColor = true;
+            this.btnBoja.Click += new System.EventHandler(this.btnBoja_Click);
+            // 
+            // txtBoja
+            // 
+            this.txtBoja.Location = new System.Drawing.Point(256, 244);
+            this.txtBoja.Name = "txtBoja";
+            this.txtBoja.ReadOnly = true;
+            this.txtBoja.Size = new System.Drawing.Size(141, 22);
+            this.txtBoja.TabIndex = 15;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(21, 247);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 17);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Boja:";
             // 
             // label6
             // 
@@ -330,32 +356,6 @@
             this.btnObrisi.UseVisualStyleBackColor = true;
             this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 247);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(40, 17);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Boja:";
-            // 
-            // txtBoja
-            // 
-            this.txtBoja.Location = new System.Drawing.Point(256, 244);
-            this.txtBoja.Name = "txtBoja";
-            this.txtBoja.ReadOnly = true;
-            this.txtBoja.Size = new System.Drawing.Size(141, 22);
-            this.txtBoja.TabIndex = 15;
-            // 
-            // btnBoja
-            // 
-            this.btnBoja.Location = new System.Drawing.Point(197, 239);
-            this.btnBoja.Name = "btnBoja";
-            this.btnBoja.Size = new System.Drawing.Size(38, 33);
-            this.btnBoja.TabIndex = 16;
-            this.btnBoja.UseVisualStyleBackColor = true;
-            this.btnBoja.Click += new System.EventHandler(this.btnBoja_Click);
-            // 
             // btnPokreni
             // 
             this.btnPokreni.Location = new System.Drawing.Point(1078, 516);
@@ -364,8 +364,9 @@
             this.btnPokreni.TabIndex = 13;
             this.btnPokreni.Text = "Pokreni simulaciju";
             this.btnPokreni.UseVisualStyleBackColor = true;
+            this.btnPokreni.Click += new System.EventHandler(this.btnPokreni_Click);
             // 
-            // frmMain
+            // frmGlavna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -381,7 +382,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmMain";
+            this.Name = "frmGlavna";
             this.Text = "Drone Positioning Simulator";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);

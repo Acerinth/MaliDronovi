@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace DronePositioningSimulator
 {
-    public partial class frmMain : Form
+    public partial class frmGlavna : Form
     {
         int id;
         float pozX;
         float pozY;
         float sig;
 
-        public frmMain()
+        public frmGlavna()
         {
             InitializeComponent();
         }
@@ -68,7 +68,7 @@ namespace DronePositioningSimulator
         {
             if (ProvjeriIspravnost())
             {
-                Dron noviDron = new Dron(id, pozX, pozY, sig, txtBoja.BackColor, txtNazivDrona.Text);
+                Dron noviDron = new Dron(id, pozX, pozY, sig, btnBoja.BackColor, txtNazivDrona.Text);
                 Dron.listaDronova.Add(noviDron);
                 MessageBox.Show("Novi dron uspješno dodan!", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 OcistiPolja();
@@ -95,6 +95,12 @@ namespace DronePositioningSimulator
             colorDialog1.ShowDialog();
             btnBoja.BackColor = colorDialog1.Color;
             txtBoja.Text = colorDialog1.Color.ToString();
+        }
+
+        private void btnPokreni_Click(object sender, EventArgs e)
+        {
+            frmIzlaz izlaz = new frmIzlaz();
+            izlaz.Show();
         }
     }
 }
