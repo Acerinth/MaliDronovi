@@ -55,12 +55,12 @@ namespace DronePositioningSimulator
             if (rbRucno.Checked == true)
             {
                 grpNoviDron.Enabled = true;
-                txtBoja.BackColor = Color.Black;
+                btnBoja.BackColor = Color.Black;
             }
             else
             {
                 grpNoviDron.Enabled = false;
-                txtBoja.BackColor = Color.White;
+                btnBoja.BackColor = Color.White;
             }
         }
 
@@ -93,7 +93,8 @@ namespace DronePositioningSimulator
         private void btnBoja_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
-            txtBoja.BackColor = colorDialog1.Color;
+            btnBoja.BackColor = colorDialog1.Color;
+            txtBoja.Text = colorDialog1.Color.ToString();
         }
     }
 }

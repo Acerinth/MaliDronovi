@@ -59,6 +59,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtBoja = new System.Windows.Forms.TextBox();
             this.btnBoja = new System.Windows.Forms.Button();
+            this.btnPokreni = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostojeciDronovi)).BeginInit();
             this.grpNoviDron.SuspendLayout();
@@ -340,26 +341,36 @@
             // 
             // txtBoja
             // 
-            this.txtBoja.Location = new System.Drawing.Point(197, 244);
+            this.txtBoja.Location = new System.Drawing.Point(256, 244);
             this.txtBoja.Name = "txtBoja";
-            this.txtBoja.Size = new System.Drawing.Size(25, 22);
+            this.txtBoja.ReadOnly = true;
+            this.txtBoja.Size = new System.Drawing.Size(141, 22);
             this.txtBoja.TabIndex = 15;
             // 
             // btnBoja
             // 
-            this.btnBoja.Location = new System.Drawing.Point(297, 239);
+            this.btnBoja.Location = new System.Drawing.Point(197, 239);
             this.btnBoja.Name = "btnBoja";
-            this.btnBoja.Size = new System.Drawing.Size(100, 33);
+            this.btnBoja.Size = new System.Drawing.Size(38, 33);
             this.btnBoja.TabIndex = 16;
-            this.btnBoja.Text = "Odaberi boju";
             this.btnBoja.UseVisualStyleBackColor = true;
             this.btnBoja.Click += new System.EventHandler(this.btnBoja_Click);
+            // 
+            // btnPokreni
+            // 
+            this.btnPokreni.Location = new System.Drawing.Point(1078, 516);
+            this.btnPokreni.Name = "btnPokreni";
+            this.btnPokreni.Size = new System.Drawing.Size(147, 55);
+            this.btnPokreni.TabIndex = 13;
+            this.btnPokreni.Text = "Pokreni simulaciju";
+            this.btnPokreni.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 612);
+            this.Controls.Add(this.btnPokreni);
             this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dgvPostojeciDronovi);
@@ -416,6 +427,7 @@
         private System.Windows.Forms.TextBox txtBoja;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button btnPokreni;
     }
 }
 
