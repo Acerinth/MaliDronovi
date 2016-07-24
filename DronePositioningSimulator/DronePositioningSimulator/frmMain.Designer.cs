@@ -38,10 +38,6 @@
             this.rbCSV = new System.Windows.Forms.RadioButton();
             this.rbRucno = new System.Windows.Forms.RadioButton();
             this.dgvPostojeciDronovi = new System.Windows.Forms.DataGridView();
-            this.IDDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NazivDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Y = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpNoviDron = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtSignal = new System.Windows.Forms.TextBox();
@@ -58,6 +54,11 @@
             this.txtNazivDrona = new System.Windows.Forms.TextBox();
             this.txtIDDron = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnObrisi = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtBoja = new System.Windows.Forms.TextBox();
+            this.btnBoja = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostojeciDronovi)).BeginInit();
             this.grpNoviDron.SuspendLayout();
@@ -146,48 +147,18 @@
             this.dgvPostojeciDronovi.AllowUserToAddRows = false;
             this.dgvPostojeciDronovi.AllowUserToDeleteRows = false;
             this.dgvPostojeciDronovi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPostojeciDronovi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IDDron,
-            this.NazivDron,
-            this.X,
-            this.Y});
             this.dgvPostojeciDronovi.Location = new System.Drawing.Point(496, 165);
             this.dgvPostojeciDronovi.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPostojeciDronovi.Name = "dgvPostojeciDronovi";
             this.dgvPostojeciDronovi.ReadOnly = true;
-            this.dgvPostojeciDronovi.Size = new System.Drawing.Size(753, 310);
+            this.dgvPostojeciDronovi.Size = new System.Drawing.Size(753, 216);
             this.dgvPostojeciDronovi.TabIndex = 10;
-            // 
-            // IDDron
-            // 
-            this.IDDron.DataPropertyName = "IDDron";
-            this.IDDron.HeaderText = "ID drona";
-            this.IDDron.Name = "IDDron";
-            this.IDDron.ReadOnly = true;
-            // 
-            // NazivDron
-            // 
-            this.NazivDron.DataPropertyName = "NazivDron";
-            this.NazivDron.HeaderText = "Naziv drona";
-            this.NazivDron.Name = "NazivDron";
-            this.NazivDron.ReadOnly = true;
-            // 
-            // X
-            // 
-            this.X.DataPropertyName = "X";
-            this.X.HeaderText = "X";
-            this.X.Name = "X";
-            this.X.ReadOnly = true;
-            // 
-            // Y
-            // 
-            this.Y.DataPropertyName = "Y";
-            this.Y.HeaderText = "Y";
-            this.Y.Name = "Y";
-            this.Y.ReadOnly = true;
             // 
             // grpNoviDron
             // 
+            this.grpNoviDron.Controls.Add(this.btnBoja);
+            this.grpNoviDron.Controls.Add(this.txtBoja);
+            this.grpNoviDron.Controls.Add(this.label9);
             this.grpNoviDron.Controls.Add(this.label6);
             this.grpNoviDron.Controls.Add(this.txtSignal);
             this.grpNoviDron.Controls.Add(this.btnSpremiDron);
@@ -207,7 +178,7 @@
             this.grpNoviDron.Margin = new System.Windows.Forms.Padding(4);
             this.grpNoviDron.Name = "grpNoviDron";
             this.grpNoviDron.Padding = new System.Windows.Forms.Padding(4);
-            this.grpNoviDron.Size = new System.Drawing.Size(428, 341);
+            this.grpNoviDron.Size = new System.Drawing.Size(428, 388);
             this.grpNoviDron.TabIndex = 9;
             this.grpNoviDron.TabStop = false;
             this.grpNoviDron.Text = "Novi dron";
@@ -232,7 +203,7 @@
             // 
             // btnSpremiDron
             // 
-            this.btnSpremiDron.Location = new System.Drawing.Point(139, 256);
+            this.btnSpremiDron.Location = new System.Drawing.Point(139, 307);
             this.btnSpremiDron.Margin = new System.Windows.Forms.Padding(4);
             this.btnSpremiDron.Name = "btnSpremiDron";
             this.btnSpremiDron.Size = new System.Drawing.Size(147, 55);
@@ -348,11 +319,48 @@
             this.label8.TabIndex = 11;
             this.label8.Text = "Popis dronova:";
             // 
+            // btnObrisi
+            // 
+            this.btnObrisi.Location = new System.Drawing.Point(1078, 399);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(147, 55);
+            this.btnObrisi.TabIndex = 12;
+            this.btnObrisi.Text = "Obrisi oznaceno";
+            this.btnObrisi.UseVisualStyleBackColor = true;
+            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(21, 247);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 17);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Boja:";
+            // 
+            // txtBoja
+            // 
+            this.txtBoja.Location = new System.Drawing.Point(197, 244);
+            this.txtBoja.Name = "txtBoja";
+            this.txtBoja.Size = new System.Drawing.Size(25, 22);
+            this.txtBoja.TabIndex = 15;
+            // 
+            // btnBoja
+            // 
+            this.btnBoja.Location = new System.Drawing.Point(297, 239);
+            this.btnBoja.Name = "btnBoja";
+            this.btnBoja.Size = new System.Drawing.Size(100, 33);
+            this.btnBoja.TabIndex = 16;
+            this.btnBoja.Text = "Odaberi boju";
+            this.btnBoja.UseVisualStyleBackColor = true;
+            this.btnBoja.Click += new System.EventHandler(this.btnBoja_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 612);
+            this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dgvPostojeciDronovi);
             this.Controls.Add(this.grpNoviDron);
@@ -363,7 +371,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
-            this.Text = "Form1";
+            this.Text = "Drone Positioning Simulator";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -387,10 +395,6 @@
         private System.Windows.Forms.RadioButton rbCSV;
         private System.Windows.Forms.RadioButton rbRucno;
         private System.Windows.Forms.DataGridView dgvPostojeciDronovi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDDron;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NazivDron;
-        private System.Windows.Forms.DataGridViewTextBoxColumn X;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Y;
         private System.Windows.Forms.GroupBox grpNoviDron;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtSignal;
@@ -407,6 +411,11 @@
         private System.Windows.Forms.TextBox txtNazivDrona;
         private System.Windows.Forms.TextBox txtIDDron;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnObrisi;
+        private System.Windows.Forms.Button btnBoja;
+        private System.Windows.Forms.TextBox txtBoja;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

@@ -46,7 +46,8 @@ namespace DronePositioningSimulator
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y }).ToList();
+            //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
+            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja }).ToList();
         }
 
         private void rbRucno_CheckedChanged(object sender, EventArgs e)
@@ -54,10 +55,12 @@ namespace DronePositioningSimulator
             if (rbRucno.Checked == true)
             {
                 grpNoviDron.Enabled = true;
+                txtBoja.BackColor = Color.Black;
             }
             else
             {
                 grpNoviDron.Enabled = false;
+                txtBoja.BackColor = Color.White;
             }
         }
 
@@ -65,16 +68,32 @@ namespace DronePositioningSimulator
         {
             if (ProvjeriIspravnost())
             {
-                Dron noviDron = new Dron(id, pozX, pozY, sig, txtNazivDrona.Text);
+                Dron noviDron = new Dron(id, pozX, pozY, sig, txtBoja.BackColor, txtNazivDrona.Text);
                 Dron.listaDronova.Add(noviDron);
                 MessageBox.Show("Novi dron uspješno dodan!", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 OcistiPolja();
-                dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y }).ToList();
+                //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
+                dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja }).ToList();
             }
             else
             {
                 MessageBox.Show("Pogrešno uneseni podaci", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnObrisi_Click(object sender, EventArgs e)
+        {
+            int index = dgvPostojeciDronovi.CurrentRow.Index;
+            Dron.listaDronova.RemoveAt(index);
+            //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
+            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja }).ToList();
+
+        }
+
+        private void btnBoja_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            txtBoja.BackColor = colorDialog1.Color;
         }
     }
 }
