@@ -16,6 +16,8 @@ namespace DronePositioningSimulator
         float pozX;
         float pozY;
         float sig;
+        float s;
+        float v;
 
         public frmGlavna()
         {
@@ -29,7 +31,9 @@ namespace DronePositioningSimulator
             if (int.TryParse(txtIDDron.Text, out id) &&
             float.TryParse(txtPozX.Text, out pozX) &&
             float.TryParse(txtPozY.Text, out pozY) &&
-            float.TryParse(txtSignal.Text, out sig)) return true;
+            float.TryParse(txtSignal.Text, out sig) &&
+            float.TryParse(txtSmjerX.Text, out s) &&
+            float.TryParse(txtBrzina.Text, out v) ) return true;
             else return false;
         }
 
@@ -40,13 +44,15 @@ namespace DronePositioningSimulator
             this.txtPozX.Text = "";
             this.txtPozY.Text = "";
             this.txtSignal.Text = "";
-            this.txtSmjer.Text = "";
-            this.txtBrzina.Text = "";
+            this.txtBrzina.Text = "0";
+            this.txtSmjerX.Text = "0";
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
+            this.txtBrzina.Text = "0";
+            this.txtSmjerX.Text = "0";
             dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja }).ToList();
         }
 
@@ -68,7 +74,7 @@ namespace DronePositioningSimulator
         {
             if (ProvjeriIspravnost())
             {
-                Dron noviDron = new Dron(id, pozX, pozY, sig, btnBoja.BackColor, txtNazivDrona.Text);
+                Dron noviDron = new Dron(id, pozX, pozY, sig, btnBoja.BackColor, txtNazivDrona.Text, 0, 0, s, v);
                 Dron.listaDronova.Add(noviDron);
                 MessageBox.Show("Novi dron uspješno dodan!", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 OcistiPolja();

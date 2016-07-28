@@ -45,6 +45,7 @@
             this.ClientSize = new System.Drawing.Size(782, 553);
             this.Name = "frmIzlaz";
             this.Text = "frmIzlaz";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmIzlaz_FormClosed);
             this.Load += new System.EventHandler(this.frmIzlaz_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmIzlaz_Paint);
             this.ResumeLayout(false);

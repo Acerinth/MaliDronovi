@@ -28,14 +28,26 @@ namespace DronePositioningSimulator
             foreach (Dron d in Dron.listaDronova)
             {
                 SolidBrush boja = new SolidBrush(d.Boja);                
-                e.Graphics.FillEllipse(boja, d.X, d.Y, 10, 10);
+                e.Graphics.FillEllipse(boja, d.TrenX, d.TrenY, 10, 10);
             }
             
         }
 
         private void tmrDrawingTimer_Tick(object sender, EventArgs e)
         {
+            foreach (Dron d in Dron.listaDronova)
+            {
+                d.pomakniDron();
+            }
             this.Refresh();
+        }
+
+        private void frmIzlaz_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            foreach (Dron d in Dron.listaDronova)
+            {
+                d.resetrirajTrenutno();
+            }
         }
     }
 }

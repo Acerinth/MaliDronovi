@@ -52,7 +52,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtSmjer = new System.Windows.Forms.TextBox();
+            this.txtSmjerX = new System.Windows.Forms.TextBox();
             this.txtPozX = new System.Windows.Forms.TextBox();
             this.txtNazivDrona = new System.Windows.Forms.TextBox();
             this.txtIDDron = new System.Windows.Forms.TextBox();
@@ -170,7 +170,7 @@
             this.grpNoviDron.Controls.Add(this.label3);
             this.grpNoviDron.Controls.Add(this.label2);
             this.grpNoviDron.Controls.Add(this.label7);
-            this.grpNoviDron.Controls.Add(this.txtSmjer);
+            this.grpNoviDron.Controls.Add(this.txtSmjerX);
             this.grpNoviDron.Controls.Add(this.txtPozX);
             this.grpNoviDron.Controls.Add(this.txtNazivDrona);
             this.grpNoviDron.Controls.Add(this.txtIDDron);
@@ -189,7 +189,7 @@
             this.btnBoja.Location = new System.Drawing.Point(197, 239);
             this.btnBoja.Name = "btnBoja";
             this.btnBoja.Size = new System.Drawing.Size(38, 33);
-            this.btnBoja.TabIndex = 16;
+            this.btnBoja.TabIndex = 7;
             this.btnBoja.UseVisualStyleBackColor = true;
             this.btnBoja.Click += new System.EventHandler(this.btnBoja_Click);
             // 
@@ -234,7 +234,7 @@
             this.btnSpremiDron.Margin = new System.Windows.Forms.Padding(4);
             this.btnSpremiDron.Name = "btnSpremiDron";
             this.btnSpremiDron.Size = new System.Drawing.Size(147, 55);
-            this.btnSpremiDron.TabIndex = 7;
+            this.btnSpremiDron.TabIndex = 8;
             this.btnSpremiDron.Text = "Spremi dron";
             this.btnSpremiDron.UseVisualStyleBackColor = true;
             this.btnSpremiDron.Click += new System.EventHandler(this.btnSpremiDron_Click);
@@ -255,9 +255,9 @@
             this.label4.Location = new System.Drawing.Point(21, 177);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 17);
+            this.label4.Size = new System.Drawing.Size(111, 17);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Smjer:";
+            this.label4.Text = "Smjer (0°-360°):";
             // 
             // txtBrzina
             // 
@@ -305,13 +305,13 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "ID drona:";
             // 
-            // txtSmjer
+            // txtSmjerX
             // 
-            this.txtSmjer.Location = new System.Drawing.Point(197, 174);
-            this.txtSmjer.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSmjer.Name = "txtSmjer";
-            this.txtSmjer.Size = new System.Drawing.Size(200, 22);
-            this.txtSmjer.TabIndex = 5;
+            this.txtSmjerX.Location = new System.Drawing.Point(197, 174);
+            this.txtSmjerX.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSmjerX.Name = "txtSmjerX";
+            this.txtSmjerX.Size = new System.Drawing.Size(200, 22);
+            this.txtSmjerX.TabIndex = 5;
             // 
             // txtPozX
             // 
@@ -418,7 +418,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtSmjer;
+        private System.Windows.Forms.TextBox txtSmjerX;
         private System.Windows.Forms.TextBox txtPozX;
         private System.Windows.Forms.TextBox txtNazivDrona;
         private System.Windows.Forms.TextBox txtIDDron;
