@@ -348,16 +348,18 @@
             // 
             // btnObrisi
             // 
+            this.btnObrisi.Enabled = false;
             this.btnObrisi.Location = new System.Drawing.Point(1078, 399);
             this.btnObrisi.Name = "btnObrisi";
             this.btnObrisi.Size = new System.Drawing.Size(147, 55);
             this.btnObrisi.TabIndex = 12;
-            this.btnObrisi.Text = "Obrisi oznaceno";
+            this.btnObrisi.Text = "Obriši označeno";
             this.btnObrisi.UseVisualStyleBackColor = true;
             this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
             // btnPokreni
             // 
+            this.btnPokreni.Enabled = false;
             this.btnPokreni.Location = new System.Drawing.Point(1078, 516);
             this.btnPokreni.Name = "btnPokreni";
             this.btnPokreni.Size = new System.Drawing.Size(147, 55);

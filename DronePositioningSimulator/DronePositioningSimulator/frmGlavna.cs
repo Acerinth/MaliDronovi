@@ -91,6 +91,10 @@ namespace DronePositioningSimulator
             {
                 MessageBox.Show("Pogrešno uneseni podaci", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            if (Dron.listaDronova.Count > 0)
+            {
+                omoguciGumbe(true);
+            }
         }
 
         private void btnObrisi_Click(object sender, EventArgs e)
@@ -99,7 +103,14 @@ namespace DronePositioningSimulator
             Dron.listaDronova.RemoveAt(index);
             //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
             dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja }).ToList();
-
+            if (Dron.listaDronova.Count > 0)
+            {
+                omoguciGumbe(true);
+            }
+            else
+            {
+                omoguciGumbe(false);
+            }
         }
 
         private void btnBoja_Click(object sender, EventArgs e)
@@ -113,6 +124,12 @@ namespace DronePositioningSimulator
         {
             frmIzlaz izlaz = new frmIzlaz();
             izlaz.Show();
+        }
+
+        private void omoguciGumbe(bool y)
+        {
+            this.btnObrisi.Enabled = y;
+            this.btnPokreni.Enabled = y;
         }
     }
 }
