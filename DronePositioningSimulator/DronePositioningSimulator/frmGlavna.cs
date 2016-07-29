@@ -59,7 +59,7 @@ namespace DronePositioningSimulator
             //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
             this.txtBrzina.Text = "0";
             this.txtSmjerX.Text = "0";
-            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja }).ToList();
+            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer, JacinaSignala = l.JacinaSignala }).ToList();
         }
 
         private void rbRucno_CheckedChanged(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace DronePositioningSimulator
                 MessageBox.Show("Novi dron uspješno dodan!", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 OcistiPolja();
                 //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
-                dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja }).ToList();
+                dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer, JacinaSignala = l.JacinaSignala }).ToList();
             }
             else
             {
@@ -102,7 +102,7 @@ namespace DronePositioningSimulator
             int index = dgvPostojeciDronovi.CurrentRow.Index;
             Dron.listaDronova.RemoveAt(index);
             //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
-            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja }).ToList();
+            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer, JacinaSignala = l.JacinaSignala }).ToList();
             if (Dron.listaDronova.Count > 0)
             {
                 omoguciGumbe(true);

@@ -60,6 +60,14 @@
             this.btnObrisi = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btnPokreni = new System.Windows.Forms.Button();
+            this.IDDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NazivDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Y = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Boja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Brzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Smjer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JacinaSignala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostojeciDronovi)).BeginInit();
             this.grpNoviDron.SuspendLayout();
@@ -148,6 +156,15 @@
             this.dgvPostojeciDronovi.AllowUserToAddRows = false;
             this.dgvPostojeciDronovi.AllowUserToDeleteRows = false;
             this.dgvPostojeciDronovi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPostojeciDronovi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IDDron,
+            this.NazivDron,
+            this.X,
+            this.Y,
+            this.Boja,
+            this.Brzina,
+            this.Smjer,
+            this.JacinaSignala});
             this.dgvPostojeciDronovi.Location = new System.Drawing.Point(496, 165);
             this.dgvPostojeciDronovi.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPostojeciDronovi.Name = "dgvPostojeciDronovi";
@@ -368,6 +385,66 @@
             this.btnPokreni.UseVisualStyleBackColor = true;
             this.btnPokreni.Click += new System.EventHandler(this.btnPokreni_Click);
             // 
+            // IDDron
+            // 
+            this.IDDron.DataPropertyName = "IDDron";
+            this.IDDron.HeaderText = "ID";
+            this.IDDron.Name = "IDDron";
+            this.IDDron.ReadOnly = true;
+            this.IDDron.Width = 50;
+            // 
+            // NazivDron
+            // 
+            this.NazivDron.DataPropertyName = "NazivDron";
+            this.NazivDron.HeaderText = "Naziv";
+            this.NazivDron.Name = "NazivDron";
+            this.NazivDron.ReadOnly = true;
+            this.NazivDron.Width = 150;
+            // 
+            // X
+            // 
+            this.X.DataPropertyName = "X";
+            this.X.HeaderText = "X";
+            this.X.Name = "X";
+            this.X.ReadOnly = true;
+            this.X.Width = 50;
+            // 
+            // Y
+            // 
+            this.Y.DataPropertyName = "Y";
+            this.Y.HeaderText = "Y";
+            this.Y.Name = "Y";
+            this.Y.ReadOnly = true;
+            this.Y.Width = 50;
+            // 
+            // Boja
+            // 
+            this.Boja.DataPropertyName = "Boja";
+            this.Boja.HeaderText = "Boja";
+            this.Boja.Name = "Boja";
+            this.Boja.ReadOnly = true;
+            // 
+            // Brzina
+            // 
+            this.Brzina.DataPropertyName = "Brzina";
+            this.Brzina.HeaderText = "Brzina";
+            this.Brzina.Name = "Brzina";
+            this.Brzina.ReadOnly = true;
+            // 
+            // Smjer
+            // 
+            this.Smjer.DataPropertyName = "Smjer";
+            this.Smjer.HeaderText = "Smjer";
+            this.Smjer.Name = "Smjer";
+            this.Smjer.ReadOnly = true;
+            // 
+            // JacinaSignala
+            // 
+            this.JacinaSignala.DataPropertyName = "JacinaSignala";
+            this.JacinaSignala.HeaderText = "Signal";
+            this.JacinaSignala.Name = "JacinaSignala";
+            this.JacinaSignala.ReadOnly = true;
+            // 
             // frmGlavna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -431,6 +508,14 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button btnPokreni;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDDron;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NazivDron;
+        private System.Windows.Forms.DataGridViewTextBoxColumn X;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Y;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Boja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Brzina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Smjer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JacinaSignala;
     }
 }
 
