@@ -35,7 +35,7 @@
             // tmrDrawingTimer
             // 
             this.tmrDrawingTimer.Enabled = true;
-            this.tmrDrawingTimer.Interval = 10;
+            this.tmrDrawingTimer.Interval = 30;
             this.tmrDrawingTimer.Tick += new System.EventHandler(this.tmrDrawingTimer_Tick);
             // 
             // frmIzlaz
@@ -44,7 +44,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
             this.Name = "frmIzlaz";
-            this.Text = "frmIzlaz";
+            this.Text = "Output Window";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmIzlaz_FormClosed);
             this.Load += new System.EventHandler(this.frmIzlaz_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmIzlaz_Paint);

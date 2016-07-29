@@ -37,6 +37,7 @@ namespace DronePositioningSimulator
         {
             foreach (Dron d in Dron.listaDronova)
             {
+                d.provjeriRub(this.ClientSize.Width, this.ClientSize.Height);
                 d.pomakniDron();
             }
             this.Refresh();
@@ -49,5 +50,7 @@ namespace DronePositioningSimulator
                 d.resetrirajTrenutno();
             }
         }
+        
+       
     }
 }

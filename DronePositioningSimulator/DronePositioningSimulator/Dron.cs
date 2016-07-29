@@ -49,34 +49,34 @@ namespace DronePositioningSimulator
                 this.TrenX += izracunajPomakX(this.TrenX, this.TrenSmjer, this.Brzina);
                 this.TrenY -= izracunajPomakY(this.TrenY, this.TrenSmjer, this.Brzina);
             }
-            else if (this.Smjer == 90)
+            else if (this.TrenSmjer == 90)
             {
                 this.TrenX += izracunajPomakX(this.TrenX, this.TrenSmjer, this.Brzina);
             }
-            else if (this.TrenSmjer < 180)
+            else if (this.TrenSmjer > 90 && this.TrenSmjer < 180)
             {
                 this.TrenX += izracunajPomakX(this.TrenX, this.TrenSmjer, this.Brzina);
                 this.TrenY += izracunajPomakY(this.TrenY, this.TrenSmjer, this.Brzina);
             }
-            else if (this.Smjer == 180)
+            else if (this.TrenSmjer == 180)
             {
                 this.TrenY += izracunajPomakY(this.TrenY, this.TrenSmjer, this.Brzina);
             }
-            else if (this.TrenSmjer < 270)
+            else if (this.TrenSmjer > 180 && this.TrenSmjer < 270)
             {
                 this.TrenX -= izracunajPomakX(this.TrenX, this.TrenSmjer, this.Brzina);
                 this.TrenY += izracunajPomakY(this.TrenY, this.TrenSmjer, this.Brzina);
             }
-            else if (this.Smjer == 270)
+            else if (this.TrenSmjer == 270)
             {
                 this.TrenX -= izracunajPomakX(this.TrenX, this.TrenSmjer, this.Brzina);
             }
-            else if (this.TrenSmjer < 360)
+            else if (this.TrenSmjer > 270 && this.TrenSmjer < 360)
             {
                 this.TrenX -= izracunajPomakX(this.TrenX, this.TrenSmjer, this.Brzina);
                 this.TrenY -= izracunajPomakY(this.TrenY, this.TrenSmjer, this.Brzina);
             }
-            else if (this.Smjer == 360 || this.Smjer == 0)
+            else if (this.TrenSmjer == 360 || this.TrenSmjer == 0)
             {
                 this.TrenY -= izracunajPomakY(this.TrenY, this.TrenSmjer, this.Brzina);
             }
@@ -105,15 +105,27 @@ namespace DronePositioningSimulator
             float noviKut = s;
             if (s > 90 && s < 180)
             {
-                noviKut = s - 90;
+                noviKut = 180 - s;
+            }
+            if (s == 180)
+            {
+                noviKut = 0;
             }
             if (s > 180 && s < 270)
             {
                 noviKut = s - 180;
             }
+            if (s == 270)
+            {
+                noviKut = 90;
+            }
             if (s > 270 && s < 360)
             {
-                noviKut = s - 270;
+                noviKut = 360 - s;
+            }
+            if (s == 360)
+            {
+                noviKut = 0;
             }
             return noviKut;
         }
@@ -123,6 +135,42 @@ namespace DronePositioningSimulator
             this.TrenSmjer = this.Smjer;
             this.TrenX = this.X;
             this.TrenY = this.Y;
+        }
+
+        public void provjeriRub(int w, int h)
+        {
+            if (this.TrenX >= w || this.TrenX < 0)
+            {
+                this.TrenSmjer = 360 - this.TrenSmjer;
+            }
+            if (this.TrenY >= h || this.TrenY < 0)
+            {
+                if (this.TrenSmjer > 0 && this.TrenSmjer < 90)
+                {
+                    this.TrenSmjer = 180 - this.TrenSmjer;
+                }
+                else if (this.TrenSmjer > 90 && this.TrenSmjer < 180)
+                {
+                    this.TrenSmjer = 180 - this.TrenSmjer;
+                }
+                else if (this.TrenSmjer > 180 && this.TrenSmjer < 270)
+                {
+                    this.TrenSmjer = 360 - (this.TrenSmjer - 180);
+                }
+                else if (this.TrenSmjer > 270 && this.TrenSmjer < 360)
+                {
+                    this.TrenSmjer = (360 - this.TrenSmjer) + 180;
+                }
+                else if (this.TrenSmjer == 0 || this.TrenSmjer == 180)
+                {
+                    this.TrenSmjer += 180;
+                }
+                else if (this.TrenSmjer == 360)
+                {
+                    this.TrenSmjer = 0;
+                }
+
+            }
         }
 
     }

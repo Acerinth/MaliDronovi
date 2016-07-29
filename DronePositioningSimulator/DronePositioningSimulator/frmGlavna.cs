@@ -33,7 +33,13 @@ namespace DronePositioningSimulator
             float.TryParse(txtPozY.Text, out pozY) &&
             float.TryParse(txtSignal.Text, out sig) &&
             float.TryParse(txtSmjerX.Text, out s) &&
-            float.TryParse(txtBrzina.Text, out v) ) return true;
+            float.TryParse(txtBrzina.Text, out v)) {
+                if (s >= 0 && s <= 360)
+                {
+                    return true;
+                }
+                else return false;
+            } 
             else return false;
         }
 
