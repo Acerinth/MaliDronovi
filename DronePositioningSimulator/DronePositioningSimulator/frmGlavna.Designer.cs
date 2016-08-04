@@ -399,7 +399,6 @@
             this.NazivDron.HeaderText = "Naziv";
             this.NazivDron.Name = "NazivDron";
             this.NazivDron.ReadOnly = true;
-            this.NazivDron.Width = 150;
             // 
             // X
             // 
@@ -430,6 +429,7 @@
             this.Brzina.HeaderText = "Brzina";
             this.Brzina.Name = "Brzina";
             this.Brzina.ReadOnly = true;
+            this.Brzina.Width = 50;
             // 
             // Smjer
             // 
@@ -437,6 +437,7 @@
             this.Smjer.HeaderText = "Smjer";
             this.Smjer.Name = "Smjer";
             this.Smjer.ReadOnly = true;
+            this.Smjer.Width = 50;
             // 
             // JacinaSignala
             // 
@@ -444,6 +445,7 @@
             this.JacinaSignala.HeaderText = "Signal";
             this.JacinaSignala.Name = "JacinaSignala";
             this.JacinaSignala.ReadOnly = true;
+            this.JacinaSignala.Width = 50;
             // 
             // frmGlavna
             // 

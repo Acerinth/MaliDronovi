@@ -25,7 +25,7 @@ namespace DronePositioningSimulator
 
         public static List<Dron> listaDronova = new List<Dron>();
 
-        public Dron (int id, float x, float y, float sig, Color b, string naz="", float gx=0, float gy=0, float s=0, float v=0)
+        public Dron (int id, float x, float y, float sig, Color b, string naz="", float gx =0, float gy =0, float s=0, float v=0)
         {
             this.IDDron = id;
             this.NazivDron = naz;
@@ -139,11 +139,11 @@ namespace DronePositioningSimulator
 
         public void provjeriRub(int w, int h)
         {
-            if (this.TrenX >= w || this.TrenX < 0)
+            if (this.TrenX >= w || this.TrenX <= 1)
             {
                 this.TrenSmjer = 360 - this.TrenSmjer;
             }
-            if (this.TrenY >= h || this.TrenY < 0)
+            if (this.TrenY >= h || this.TrenY <= 1)
             {
                 if (this.TrenSmjer > 0 && this.TrenSmjer < 90)
                 {

@@ -12,6 +12,8 @@ namespace DronePositioningSimulator
 {
     public partial class frmIzlaz : Form
     {
+        Greska g = new Greska();
+
         public frmIzlaz()
         {
             InitializeComponent();
@@ -27,8 +29,23 @@ namespace DronePositioningSimulator
         {
             foreach (Dron d in Dron.listaDronova)
             {
-                SolidBrush boja = new SolidBrush(d.Boja);                
-                e.Graphics.FillEllipse(boja, d.TrenX, d.TrenY, 10, 10);
+                SolidBrush boja = new SolidBrush(d.Boja);
+                Pen olovka = new Pen(d.Boja);
+                //for (int i = 0; i < 800; i++)
+                //{
+                //    for (int j = 0; j < 600; j++)
+                //    {
+                //        if (g.polje[i,j].greskaX != 0)
+                //        {
+                //            e.Graphics.DrawEllipse(Pens.Black, i, j, 1, 1);
+                //        }
+                //    }
+                //}                
+                e.Graphics.FillEllipse(boja, d.TrenX-5, d.TrenY-5, 10, 10);
+                d.GreskaX = g.polje[Math.Abs((int)d.TrenX), Math.Abs((int)d.TrenY)].greskaX;
+                d.GreskaY = g.polje[Math.Abs((int)d.TrenX), Math.Abs((int)d.TrenY)].greskaY;
+                e.Graphics.DrawEllipse(olovka, d.TrenX- d.GreskaX, d.TrenY- d.GreskaY, d.GreskaX*2, d.GreskaY*2);
+
             }
             
         }
@@ -37,7 +54,7 @@ namespace DronePositioningSimulator
         {
             foreach (Dron d in Dron.listaDronova)
             {
-                d.provjeriRub(this.ClientSize.Width, this.ClientSize.Height);
+                d.provjeriRub(this.ClientSize.Width-5, this.ClientSize.Height-5);
                 d.pomakniDron();
             }
             this.Refresh();
