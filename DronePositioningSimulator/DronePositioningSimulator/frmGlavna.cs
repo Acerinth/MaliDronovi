@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Device.Location;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,6 @@ namespace DronePositioningSimulator
         int id;
         float pozX;
         float pozY;
-        float sig;
         float s;
         float v;
 
@@ -31,7 +31,6 @@ namespace DronePositioningSimulator
             if (int.TryParse(txtIDDron.Text, out id) &&
             float.TryParse(txtPozX.Text, out pozX) &&
             float.TryParse(txtPozY.Text, out pozY) &&
-            float.TryParse(txtSignal.Text, out sig) &&
             float.TryParse(txtSmjerX.Text, out s) &&
             float.TryParse(txtBrzina.Text, out v)) {
                 if (s >= 0 && s <= 360)
@@ -49,7 +48,6 @@ namespace DronePositioningSimulator
             this.txtNazivDrona.Text = "";
             this.txtPozX.Text = "";
             this.txtPozY.Text = "";
-            this.txtSignal.Text = "";
             this.txtBrzina.Text = "0";
             this.txtSmjerX.Text = "0";
         }
@@ -59,7 +57,7 @@ namespace DronePositioningSimulator
             //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
             this.txtBrzina.Text = "0";
             this.txtSmjerX.Text = "0";
-            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer, JacinaSignala = l.JacinaSignala }).ToList();
+            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
         }
 
         private void rbRucno_CheckedChanged(object sender, EventArgs e)
@@ -80,12 +78,14 @@ namespace DronePositioningSimulator
         {
             if (ProvjeriIspravnost())
             {
-                Dron noviDron = new Dron(id, pozX, pozY, sig, btnBoja.BackColor, txtNazivDrona.Text, 0, 0, s, v);
+                Dron noviDron = new Dron(id, pozX, pozY, btnBoja.BackColor, txtNazivDrona.Text, 0, 0, s, v);
                 Dron.listaDronova.Add(noviDron);
                 MessageBox.Show("Novi dron uspješno dodan!", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 OcistiPolja();
                 //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
-                dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer, JacinaSignala = l.JacinaSignala }).ToList();
+                dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
+                //GeoCoordinate noviCvor = new GeoCoordinate();
+                
             }
             else
             {
@@ -102,7 +102,7 @@ namespace DronePositioningSimulator
             int index = dgvPostojeciDronovi.CurrentRow.Index;
             Dron.listaDronova.RemoveAt(index);
             //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
-            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer, JacinaSignala = l.JacinaSignala }).ToList();
+            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
             if (Dron.listaDronova.Count > 0)
             {
                 omoguciGumbe(true);

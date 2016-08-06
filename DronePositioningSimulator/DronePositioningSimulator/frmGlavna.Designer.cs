@@ -38,12 +38,17 @@
             this.rbCSV = new System.Windows.Forms.RadioButton();
             this.rbRucno = new System.Windows.Forms.RadioButton();
             this.dgvPostojeciDronovi = new System.Windows.Forms.DataGridView();
+            this.IDDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NazivDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Y = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Boja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Brzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Smjer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpNoviDron = new System.Windows.Forms.GroupBox();
             this.btnBoja = new System.Windows.Forms.Button();
             this.txtBoja = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtSignal = new System.Windows.Forms.TextBox();
             this.btnSpremiDron = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -60,14 +65,6 @@
             this.btnObrisi = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btnPokreni = new System.Windows.Forms.Button();
-            this.IDDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NazivDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Y = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Boja = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Brzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Smjer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.JacinaSignala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostojeciDronovi)).BeginInit();
             this.grpNoviDron.SuspendLayout();
@@ -163,8 +160,7 @@
             this.Y,
             this.Boja,
             this.Brzina,
-            this.Smjer,
-            this.JacinaSignala});
+            this.Smjer});
             this.dgvPostojeciDronovi.Location = new System.Drawing.Point(496, 165);
             this.dgvPostojeciDronovi.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPostojeciDronovi.Name = "dgvPostojeciDronovi";
@@ -172,13 +168,65 @@
             this.dgvPostojeciDronovi.Size = new System.Drawing.Size(753, 216);
             this.dgvPostojeciDronovi.TabIndex = 10;
             // 
+            // IDDron
+            // 
+            this.IDDron.DataPropertyName = "IDDron";
+            this.IDDron.HeaderText = "ID";
+            this.IDDron.Name = "IDDron";
+            this.IDDron.ReadOnly = true;
+            this.IDDron.Width = 50;
+            // 
+            // NazivDron
+            // 
+            this.NazivDron.DataPropertyName = "NazivDron";
+            this.NazivDron.HeaderText = "Naziv";
+            this.NazivDron.Name = "NazivDron";
+            this.NazivDron.ReadOnly = true;
+            // 
+            // X
+            // 
+            this.X.DataPropertyName = "X";
+            this.X.HeaderText = "X";
+            this.X.Name = "X";
+            this.X.ReadOnly = true;
+            this.X.Width = 50;
+            // 
+            // Y
+            // 
+            this.Y.DataPropertyName = "Y";
+            this.Y.HeaderText = "Y";
+            this.Y.Name = "Y";
+            this.Y.ReadOnly = true;
+            this.Y.Width = 50;
+            // 
+            // Boja
+            // 
+            this.Boja.DataPropertyName = "Boja";
+            this.Boja.HeaderText = "Boja";
+            this.Boja.Name = "Boja";
+            this.Boja.ReadOnly = true;
+            // 
+            // Brzina
+            // 
+            this.Brzina.DataPropertyName = "Brzina";
+            this.Brzina.HeaderText = "Brzina";
+            this.Brzina.Name = "Brzina";
+            this.Brzina.ReadOnly = true;
+            this.Brzina.Width = 50;
+            // 
+            // Smjer
+            // 
+            this.Smjer.DataPropertyName = "Smjer";
+            this.Smjer.HeaderText = "Smjer";
+            this.Smjer.Name = "Smjer";
+            this.Smjer.ReadOnly = true;
+            this.Smjer.Width = 50;
+            // 
             // grpNoviDron
             // 
             this.grpNoviDron.Controls.Add(this.btnBoja);
             this.grpNoviDron.Controls.Add(this.txtBoja);
             this.grpNoviDron.Controls.Add(this.label9);
-            this.grpNoviDron.Controls.Add(this.label6);
-            this.grpNoviDron.Controls.Add(this.txtSignal);
             this.grpNoviDron.Controls.Add(this.btnSpremiDron);
             this.grpNoviDron.Controls.Add(this.label5);
             this.grpNoviDron.Controls.Add(this.label4);
@@ -196,14 +244,14 @@
             this.grpNoviDron.Margin = new System.Windows.Forms.Padding(4);
             this.grpNoviDron.Name = "grpNoviDron";
             this.grpNoviDron.Padding = new System.Windows.Forms.Padding(4);
-            this.grpNoviDron.Size = new System.Drawing.Size(428, 388);
+            this.grpNoviDron.Size = new System.Drawing.Size(428, 339);
             this.grpNoviDron.TabIndex = 9;
             this.grpNoviDron.TabStop = false;
             this.grpNoviDron.Text = "Novi dron";
             // 
             // btnBoja
             // 
-            this.btnBoja.Location = new System.Drawing.Point(197, 239);
+            this.btnBoja.Location = new System.Drawing.Point(197, 201);
             this.btnBoja.Name = "btnBoja";
             this.btnBoja.Size = new System.Drawing.Size(38, 33);
             this.btnBoja.TabIndex = 7;
@@ -212,7 +260,7 @@
             // 
             // txtBoja
             // 
-            this.txtBoja.Location = new System.Drawing.Point(256, 244);
+            this.txtBoja.Location = new System.Drawing.Point(256, 206);
             this.txtBoja.Name = "txtBoja";
             this.txtBoja.ReadOnly = true;
             this.txtBoja.Size = new System.Drawing.Size(141, 22);
@@ -221,33 +269,15 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 247);
+            this.label9.Location = new System.Drawing.Point(21, 209);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(40, 17);
             this.label9.TabIndex = 14;
             this.label9.Text = "Boja:";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 144);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 17);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Jačina signala:";
-            // 
-            // txtSignal
-            // 
-            this.txtSignal.Location = new System.Drawing.Point(197, 140);
-            this.txtSignal.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSignal.Name = "txtSignal";
-            this.txtSignal.Size = new System.Drawing.Size(200, 22);
-            this.txtSignal.TabIndex = 4;
-            // 
             // btnSpremiDron
             // 
-            this.btnSpremiDron.Location = new System.Drawing.Point(139, 307);
+            this.btnSpremiDron.Location = new System.Drawing.Point(139, 265);
             this.btnSpremiDron.Margin = new System.Windows.Forms.Padding(4);
             this.btnSpremiDron.Name = "btnSpremiDron";
             this.btnSpremiDron.Size = new System.Drawing.Size(147, 55);
@@ -259,7 +289,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 209);
+            this.label5.Location = new System.Drawing.Point(21, 170);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 17);
@@ -269,7 +299,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 177);
+            this.label4.Location = new System.Drawing.Point(21, 140);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 17);
@@ -278,7 +308,7 @@
             // 
             // txtBrzina
             // 
-            this.txtBrzina.Location = new System.Drawing.Point(197, 206);
+            this.txtBrzina.Location = new System.Drawing.Point(197, 167);
             this.txtBrzina.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrzina.Name = "txtBrzina";
             this.txtBrzina.Size = new System.Drawing.Size(200, 22);
@@ -324,7 +354,7 @@
             // 
             // txtSmjerX
             // 
-            this.txtSmjerX.Location = new System.Drawing.Point(197, 174);
+            this.txtSmjerX.Location = new System.Drawing.Point(197, 137);
             this.txtSmjerX.Margin = new System.Windows.Forms.Padding(4);
             this.txtSmjerX.Name = "txtSmjerX";
             this.txtSmjerX.Size = new System.Drawing.Size(200, 22);
@@ -385,68 +415,6 @@
             this.btnPokreni.UseVisualStyleBackColor = true;
             this.btnPokreni.Click += new System.EventHandler(this.btnPokreni_Click);
             // 
-            // IDDron
-            // 
-            this.IDDron.DataPropertyName = "IDDron";
-            this.IDDron.HeaderText = "ID";
-            this.IDDron.Name = "IDDron";
-            this.IDDron.ReadOnly = true;
-            this.IDDron.Width = 50;
-            // 
-            // NazivDron
-            // 
-            this.NazivDron.DataPropertyName = "NazivDron";
-            this.NazivDron.HeaderText = "Naziv";
-            this.NazivDron.Name = "NazivDron";
-            this.NazivDron.ReadOnly = true;
-            // 
-            // X
-            // 
-            this.X.DataPropertyName = "X";
-            this.X.HeaderText = "X";
-            this.X.Name = "X";
-            this.X.ReadOnly = true;
-            this.X.Width = 50;
-            // 
-            // Y
-            // 
-            this.Y.DataPropertyName = "Y";
-            this.Y.HeaderText = "Y";
-            this.Y.Name = "Y";
-            this.Y.ReadOnly = true;
-            this.Y.Width = 50;
-            // 
-            // Boja
-            // 
-            this.Boja.DataPropertyName = "Boja";
-            this.Boja.HeaderText = "Boja";
-            this.Boja.Name = "Boja";
-            this.Boja.ReadOnly = true;
-            // 
-            // Brzina
-            // 
-            this.Brzina.DataPropertyName = "Brzina";
-            this.Brzina.HeaderText = "Brzina";
-            this.Brzina.Name = "Brzina";
-            this.Brzina.ReadOnly = true;
-            this.Brzina.Width = 50;
-            // 
-            // Smjer
-            // 
-            this.Smjer.DataPropertyName = "Smjer";
-            this.Smjer.HeaderText = "Smjer";
-            this.Smjer.Name = "Smjer";
-            this.Smjer.ReadOnly = true;
-            this.Smjer.Width = 50;
-            // 
-            // JacinaSignala
-            // 
-            this.JacinaSignala.DataPropertyName = "JacinaSignala";
-            this.JacinaSignala.HeaderText = "Signal";
-            this.JacinaSignala.Name = "JacinaSignala";
-            this.JacinaSignala.ReadOnly = true;
-            this.JacinaSignala.Width = 50;
-            // 
             // frmGlavna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -489,8 +457,6 @@
         private System.Windows.Forms.RadioButton rbRucno;
         private System.Windows.Forms.DataGridView dgvPostojeciDronovi;
         private System.Windows.Forms.GroupBox grpNoviDron;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtSignal;
         private System.Windows.Forms.Button btnSpremiDron;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -517,7 +483,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Boja;
         private System.Windows.Forms.DataGridViewTextBoxColumn Brzina;
         private System.Windows.Forms.DataGridViewTextBoxColumn Smjer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn JacinaSignala;
     }
 }
 

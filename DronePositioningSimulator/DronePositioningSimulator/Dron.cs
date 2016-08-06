@@ -15,7 +15,6 @@ namespace DronePositioningSimulator
         public float Y { set; get; }
         public float GreskaX { set; get; }
         public float GreskaY { set; get; }
-        public float JacinaSignala { set; get; }
         public Color Boja { set; get; }
         public float Smjer { set; get; }
         public float Brzina { set; get; }
@@ -25,7 +24,9 @@ namespace DronePositioningSimulator
 
         public static List<Dron> listaDronova = new List<Dron>();
 
-        public Dron (int id, float x, float y, float sig, Color b, string naz="", float gx =0, float gy =0, float s=0, float v=0)
+        public List<Dron> vidljiviDronovi = new List<Dron>();
+
+        public Dron (int id, float x, float y, Color b, string naz="", float gx =0, float gy =0, float s=0, float v=0)
         {
             this.IDDron = id;
             this.NazivDron = naz;
@@ -33,7 +34,6 @@ namespace DronePositioningSimulator
             this.Y = y;
             this.GreskaX = gx;
             this.GreskaY = gy;
-            this.JacinaSignala = sig;
             this.Boja = b;
             this.Smjer = s;
             this.TrenSmjer = s;
@@ -171,6 +171,49 @@ namespace DronePositioningSimulator
                 }
 
             }
+        }
+
+        public float generirajX(float x, float ex)
+        {
+            float noviX;
+            Random r = new Random();
+            int pomak = r.Next(0, (int)Math.Floor((decimal)ex));
+            int znak = r.Next(0, 1);
+            if (znak==1)
+            {
+                noviX = x + pomak; 
+            }            
+            else
+            {
+                noviX = x - pomak;
+            }
+            return noviX;
+        }
+
+        public float generirajY(float y, float ey)
+        {
+            float noviY;
+            Random r = new Random();
+            int pomak = r.Next(0, (int)Math.Floor((decimal)ey));
+            int znak = r.Next(0, 1);
+            if (znak == 1)
+            {
+                noviY = y + pomak;
+            }
+            else
+            {
+                noviY = y - pomak;
+            }
+            return noviY;
+        }
+
+        public float izracunajUdaljenost(float x1, float y1, float x2, float y2)
+        {
+            float r;
+            float pom1 = (float)Math.Pow((x2 - x1), 2);
+            float pom2 = (float)Math.Pow((y2 - y1), 2);
+            r = (float)Math.Sqrt((pom1 + pom2));
+            return r;
         }
 
     }
