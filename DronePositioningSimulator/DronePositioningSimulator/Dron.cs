@@ -20,11 +20,13 @@ namespace DronePositioningSimulator
         public float Brzina { set; get; }
         public float TrenX { set; get; }
         public float TrenY { set; get; }
+        public float KorX { set; get; }
+        public float KorY { set; get; }
         public float TrenSmjer { set; get; }
+        KorekcijaPogreske kp = new KorekcijaPogreske();
 
         public static List<Dron> listaDronova = new List<Dron>();
-
-        public List<Dron> vidljiviDronovi = new List<Dron>();
+        
 
         public Dron (int id, float x, float y, Color b, string naz="", float gx =0, float gy =0, float s=0, float v=0)
         {
@@ -40,6 +42,8 @@ namespace DronePositioningSimulator
             this.Brzina = v;
             this.TrenX = x;
             this.TrenY = y;
+            this.KorX = x;
+            this.KorY = y;
         }
 
         public void pomakniDron ()
@@ -80,6 +84,8 @@ namespace DronePositioningSimulator
             {
                 this.TrenY -= izracunajPomakY(this.TrenY, this.TrenSmjer, this.Brzina);
             }
+            this.KorX = this.TrenX;
+            this.KorY = this.TrenY;
         }
 
         private float izracunajPomakX(float x, float s, float v)
@@ -135,6 +141,9 @@ namespace DronePositioningSimulator
             this.TrenSmjer = this.Smjer;
             this.TrenX = this.X;
             this.TrenY = this.Y;
+            this.KorX = this.X;
+            this.KorY = this.Y;
+            pocisti();
         }
 
         public void provjeriRub(int w, int h)
@@ -207,14 +216,66 @@ namespace DronePositioningSimulator
             return noviY;
         }
 
-        public float izracunajUdaljenost(float x1, float y1, float x2, float y2)
+        public void pronadjiDronove()
         {
-            float r;
-            float pom1 = (float)Math.Pow((x2 - x1), 2);
-            float pom2 = (float)Math.Pow((y2 - y1), 2);
-            r = (float)Math.Sqrt((pom1 + pom2));
-            return r;
+            foreach (Dron d in listaDronova)
+            {
+                float r;
+                float R;
+                if (d.IDDron != this.IDDron)
+                {
+                    r = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.KorX, d.KorY);
+                    R = kp.izracunajPrimljeniSignal(r);
+                    //int i, j;
+                    //if (this.IDDron > d.IDDron)
+                    //{
+                    //    i = d.IDDron;
+                    //    j = this.IDDron;
+                    //}
+                    //else
+                    //{
+                    //    j = d.IDDron;
+                    //    i = this.IDDron;
+                    //}
+                    if (R > -90)
+                    {
+                        var noviVidDron = new KorekcijaPogreske.vidljiviDron();
+                        noviVidDron.id = d.IDDron;
+                        noviVidDron.R = R;
+                        noviVidDron.x = d.KorX;
+                        noviVidDron.y = d.KorY;
+                        kp.vidljiviDronovi.Add(noviVidDron);
+                        //kp.matricaVidljivosti[i, j] = 1;
+                    }
+                    else
+                    {
+                        //kp.matricaVidljivosti[i, j] = 0;
+                    }
+                }
+
+            }
         }
 
+        public void korigirajMojuLokaciju()
+        {
+            foreach (KorekcijaPogreske.vidljiviDron d in kp.vidljiviDronovi)
+            {
+                float r = kp.izracunajUdaljenostPomocuSignala(d.R);
+                float noviX = Math.Abs(kp.izracunajKorigiraniX(r, d.x, d.y, this.TrenX, this.TrenY));
+                float noviY = kp.izracunajKorigiraniY(d.x, noviX, d.y, this.TrenX, this.TrenY);
+                var novaTocka = new KorekcijaPogreske.tocka();
+                novaTocka.x = noviX;
+                novaTocka.y = noviY;
+                kp.listaTocaka.Add(novaTocka);
+            }
+            this.KorX = kp.izracunajProsjekX(kp.listaTocaka);
+            this.KorY = kp.izracunajProsjekY(kp.listaTocaka);
+        }
+
+        public void pocisti()
+        {
+            this.kp.vidljiviDronovi.Clear();
+            this.kp.listaTocaka.Clear();
+        }
     }
 }
