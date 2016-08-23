@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dron.cs" />
+    <Compile Include="DronView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DronView.Designer.cs">
+      <DependentUpon>DronView.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmIzlaz.cs">
       <SubType>Form</SubType>
     </Compile>

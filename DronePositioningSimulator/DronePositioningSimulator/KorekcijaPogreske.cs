@@ -19,15 +19,16 @@ namespace DronePositioningSimulator
             public float y;
         }
 
-        public struct vidljiviDron
-        {
-            public int id;
-            public float R;
-            public float x;
-            public float y;
-        }
+        //public struct vidljiviDron
+        //{
+        //    public int id;
+        //    public float R;
+        //    public float x;
+        //    public float y;
+        //}
+
         public List<tocka> listaTocaka = new List<tocka>();
-        public List<vidljiviDron> vidljiviDronovi = new List<vidljiviDron>();
+        //public List<vidljiviDron> vidljiviDronovi = new List<vidljiviDron>();
 
 
         public float izracunajUdaljenost(float x1, float y1, float x2, float y2)
@@ -56,7 +57,11 @@ namespace DronePositioningSimulator
             return r;
         }
 
-        public float izracunajKorigiraniX(float r, float x1, float y1, float xp, float yp) {
+
+
+        // OVO NADOLJE MI VIŠE NE TREBA
+
+        /*public float izracunajKorigiraniX(float r, float x1, float y1, float xp, float yp) {
             float x2;
             float brojnik = (float)Math.Pow((xp - x1),2);
             float nazivnik = (float)Math.Pow((yp - y1), 2) + (float)Math.Pow((xp - x1), 2);
@@ -97,6 +102,6 @@ namespace DronePositioningSimulator
             }
             prosjecniY = suma / l.Count;
             return prosjecniY;
-        }
+        } */
     }
 }

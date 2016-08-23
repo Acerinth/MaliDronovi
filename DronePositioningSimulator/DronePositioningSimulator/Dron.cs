@@ -9,6 +9,7 @@ namespace DronePositioningSimulator
 {
     class Dron
     {
+        public int minSignal = -90;
         public int IDDron { set; get; }
         public string NazivDron { set; get; }
         public float X { set; get; }
@@ -26,7 +27,9 @@ namespace DronePositioningSimulator
         KorekcijaPogreske kp = new KorekcijaPogreske();
 
         public static List<Dron> listaDronova = new List<Dron>();
-        
+        public List<Dron> vidljiviDronovi = new List<Dron>();
+
+
 
         public Dron (int id, float x, float y, Color b, string naz="", float gx =0, float gy =0, float s=0, float v=0)
         {
@@ -143,7 +146,6 @@ namespace DronePositioningSimulator
             this.TrenY = this.Y;
             this.KorX = this.X;
             this.KorY = this.Y;
-            pocisti();
         }
 
         public void provjeriRub(int w, int h)
@@ -218,6 +220,7 @@ namespace DronePositioningSimulator
 
         public void pronadjiDronove()
         {
+            vidljiviDronovi.Clear();
             foreach (Dron d in listaDronova)
             {
                 float r;
@@ -226,30 +229,9 @@ namespace DronePositioningSimulator
                 {
                     r = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.KorX, d.KorY);
                     R = kp.izracunajPrimljeniSignal(r);
-                    //int i, j;
-                    //if (this.IDDron > d.IDDron)
-                    //{
-                    //    i = d.IDDron;
-                    //    j = this.IDDron;
-                    //}
-                    //else
-                    //{
-                    //    j = d.IDDron;
-                    //    i = this.IDDron;
-                    //}
-                    if (R > -90)
+                    if (R > this.minSignal)
                     {
-                        var noviVidDron = new KorekcijaPogreske.vidljiviDron();
-                        noviVidDron.id = d.IDDron;
-                        noviVidDron.R = R;
-                        noviVidDron.x = d.KorX;
-                        noviVidDron.y = d.KorY;
-                        kp.vidljiviDronovi.Add(noviVidDron);
-                        //kp.matricaVidljivosti[i, j] = 1;
-                    }
-                    else
-                    {
-                        //kp.matricaVidljivosti[i, j] = 0;
+                        vidljiviDronovi.Add(d);
                     }
                 }
 
@@ -258,24 +240,32 @@ namespace DronePositioningSimulator
 
         public void korigirajMojuLokaciju()
         {
-            foreach (KorekcijaPogreske.vidljiviDron d in kp.vidljiviDronovi)
+
+            /*if (vidljiviDronovi.Count > 0)    STARI KOD
             {
-                float r = kp.izracunajUdaljenostPomocuSignala(d.R);
-                float noviX = Math.Abs(kp.izracunajKorigiraniX(r, d.x, d.y, this.TrenX, this.TrenY));
-                float noviY = kp.izracunajKorigiraniY(d.x, noviX, d.y, this.TrenX, this.TrenY);
-                var novaTocka = new KorekcijaPogreske.tocka();
-                novaTocka.x = noviX;
-                novaTocka.y = noviY;
-                kp.listaTocaka.Add(novaTocka);
-            }
-            this.KorX = kp.izracunajProsjekX(kp.listaTocaka);
-            this.KorY = kp.izracunajProsjekY(kp.listaTocaka);
+                foreach (Dron d in vidljiviDronovi)
+                {
+                    float simr = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.KorX, d.KorY);
+                    float R = kp.izracunajPrimljeniSignal(simr);
+                    float r = kp.izracunajUdaljenostPomocuSignala(R);
+                    float noviX = Math.Abs(kp.izracunajKorigiraniX(r, d.KorX, d.KorY, this.TrenX, this.TrenY));
+                    float noviY = kp.izracunajKorigiraniY(d.KorX, noviX, d.KorY, this.TrenX, this.TrenY);
+                    var novaTocka = new KorekcijaPogreske.tocka();
+                    novaTocka.x = noviX;
+                    novaTocka.y = noviY;
+                    kp.listaTocaka.Add(novaTocka);
+                }
+                this.KorX = kp.izracunajProsjekX(kp.listaTocaka);
+                this.KorY = kp.izracunajProsjekY(kp.listaTocaka);
+            } */
+
+            
+
         }
 
-        public void pocisti()
-        {
-            this.kp.vidljiviDronovi.Clear();
-            this.kp.listaTocaka.Clear();
-        }
+        //public void pocisti()
+        //{
+        //    this.kp.listaTocaka.Clear();
+        //}
     }
 }

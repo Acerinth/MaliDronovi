@@ -23,6 +23,7 @@ namespace DronePositioningSimulator
         {
             this.DoubleBuffered = true;
             this.Paint += new PaintEventHandler(frmIzlaz_Paint);
+            this.panel1.Controls.Add(new DronView());
         }
 
         private void frmIzlaz_Paint(object sender, PaintEventArgs e)
@@ -41,8 +42,8 @@ namespace DronePositioningSimulator
                 //        }
                 //    }
                 //}                
-                //e.Graphics.FillEllipse(boja, d.TrenX-5, d.TrenY-5, 10, 10);
-                e.Graphics.FillEllipse(Brushes.Black, d.KorX - 5, d.KorY - 5, 10, 10);
+                e.Graphics.FillEllipse(boja, d.TrenX-5, d.TrenY-5, 10, 10);
+                //e.Graphics.FillEllipse(Brushes.Black, d.KorX - 5, d.KorY - 5, 10, 10);
                 d.GreskaX = g.polje[Math.Abs((int)d.TrenX), Math.Abs((int)d.TrenY)].greskaX;
                 d.GreskaY = g.polje[Math.Abs((int)d.TrenX), Math.Abs((int)d.TrenY)].greskaY;
                 e.Graphics.DrawEllipse(olovka, d.TrenX- d.GreskaX, d.TrenY- d.GreskaY, d.GreskaX*2, d.GreskaY*2);
@@ -55,7 +56,7 @@ namespace DronePositioningSimulator
         {
             foreach (Dron d in Dron.listaDronova)
             {
-                d.pocisti();
+                //d.pocisti();
                 d.provjeriRub(this.ClientSize.Width-5, this.ClientSize.Height-5);
                 d.pomakniDron();
                 d.pronadjiDronove();
