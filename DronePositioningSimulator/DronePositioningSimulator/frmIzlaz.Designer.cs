@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tmrDrawingTimer = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // tmrDrawingTimer
@@ -39,20 +38,11 @@
             this.tmrDrawingTimer.Interval = 30;
             this.tmrDrawingTimer.Tick += new System.EventHandler(this.tmrDrawingTimer_Tick);
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(782, 553);
-            this.panel1.TabIndex = 0;
-            // 
             // frmIzlaz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
-            this.Controls.Add(this.panel1);
             this.Name = "frmIzlaz";
             this.Text = "Output Window";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmIzlaz_FormClosed);
@@ -65,6 +55,5 @@
         #endregion
 
         private System.Windows.Forms.Timer tmrDrawingTimer;
-        private System.Windows.Forms.Panel panel1;
     }
 }

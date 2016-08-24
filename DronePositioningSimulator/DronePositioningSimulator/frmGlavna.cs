@@ -78,20 +78,19 @@ namespace DronePositioningSimulator
         {
             if (ProvjeriIspravnost())
             {
-                Dron noviDron = new Dron(id, pozX, pozY, btnBoja.BackColor, txtNazivDrona.Text, 0, 0, s, v);
-                Dron.listaDronova.Add(noviDron);
-                MessageBox.Show("Novi dron uspješno dodan!", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DronView noviDron = new DronView();
+                noviDron.postaviVrijednosti(id, pozX, pozY, btnBoja.BackColor, txtNazivDrona.Text, 0, 0, s, v);
+                DronView.listaDronova.Add(noviDron);
+                
                 OcistiPolja();
-                //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
-                dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
-                //GeoCoordinate noviCvor = new GeoCoordinate();
+                dgvPostojeciDronovi.DataSource = DronView.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
                 
             }
             else
             {
                 MessageBox.Show("Pogrešno uneseni podaci", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            if (Dron.listaDronova.Count > 0)
+            if (DronView.listaDronova.Count > 0)
             {
                 omoguciGumbe(true);
             }
@@ -100,10 +99,10 @@ namespace DronePositioningSimulator
         private void btnObrisi_Click(object sender, EventArgs e)
         {
             int index = dgvPostojeciDronovi.CurrentRow.Index;
-            Dron.listaDronova.RemoveAt(index);
+            DronView.listaDronova.RemoveAt(index);
             //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
-            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
-            if (Dron.listaDronova.Count > 0)
+            dgvPostojeciDronovi.DataSource = DronView.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
+            if (DronView.listaDronova.Count > 0)
             {
                 omoguciGumbe(true);
             }

@@ -12,7 +12,7 @@ namespace DronePositioningSimulator
 {
     public partial class frmIzlaz : Form
     {
-        Greska g = new Greska();
+        //Greska g = new Greska();
 
         public frmIzlaz()
         {
@@ -22,12 +22,17 @@ namespace DronePositioningSimulator
         private void frmIzlaz_Load(object sender, EventArgs e)
         {
             this.DoubleBuffered = true;
-            this.Paint += new PaintEventHandler(frmIzlaz_Paint);
-            this.panel1.Controls.Add(new DronView());
+            //this.Paint += new PaintEventHandler(frmIzlaz_Paint);
+            foreach (DronView d in DronView.listaDronova)
+            {
+                this.Controls.Add(d);
+            }
+            
         }
 
         private void frmIzlaz_Paint(object sender, PaintEventArgs e)
         {
+            /*
             foreach (Dron d in Dron.listaDronova)
             {
                 SolidBrush boja = new SolidBrush(d.Boja);
@@ -48,26 +53,26 @@ namespace DronePositioningSimulator
                 d.GreskaY = g.polje[Math.Abs((int)d.TrenX), Math.Abs((int)d.TrenY)].greskaY;
                 e.Graphics.DrawEllipse(olovka, d.TrenX- d.GreskaX, d.TrenY- d.GreskaY, d.GreskaX*2, d.GreskaY*2);
 
-            }
+            } */
             
         }
 
         private void tmrDrawingTimer_Tick(object sender, EventArgs e)
         {
-            foreach (Dron d in Dron.listaDronova)
+            foreach (DronView d in DronView.listaDronova)
             {
                 //d.pocisti();
-                d.provjeriRub(this.ClientSize.Width-5, this.ClientSize.Height-5);
+                d.provjeriRub(this.ClientSize.Width-5, this.ClientSize.Height - 5);
                 d.pomakniDron();
                 d.pronadjiDronove();
-                d.korigirajMojuLokaciju();
+                //d.korigirajMojuLokaciju();
             }
             this.Refresh();
         }
 
         private void frmIzlaz_FormClosed(object sender, FormClosedEventArgs e)
         {
-            foreach (Dron d in Dron.listaDronova)
+            foreach (DronView d in DronView.listaDronova)
             {
                 d.resetrirajTrenutno();
             }

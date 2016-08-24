@@ -28,8 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // DronView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Name = "DronView";
+            this.Size = new System.Drawing.Size(100, 100);
+            this.Load += new System.EventHandler(this.DronView_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DronView_Paint);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
