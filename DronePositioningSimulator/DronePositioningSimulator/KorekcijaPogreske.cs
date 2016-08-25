@@ -57,6 +57,7 @@ namespace DronePositioningSimulator
             return r;
         }
 
+        
 
 
         // OVO NADOLJE MI VIŠE NE TREBA

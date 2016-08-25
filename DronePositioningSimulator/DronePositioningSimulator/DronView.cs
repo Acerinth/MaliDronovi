@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace DronePositioningSimulator
 {
@@ -19,7 +20,7 @@ namespace DronePositioningSimulator
         public float Y { set; get; }
         public float GreskaX { set; get; }
         public float GreskaY { set; get; }
-        public Color Boja { set; get; }
+        public System.Drawing.Color Boja { set; get; }
         public float Smjer { set; get; }
         public float Brzina { set; get; }
         public float TrenX { set; get; }
@@ -27,6 +28,9 @@ namespace DronePositioningSimulator
         public float KorX { set; get; }
         public float KorY { set; get; }
         public float TrenSmjer { set; get; }
+        public PathGeometry rezultat;
+        public List<EllipseGeometry> listaElipsi = new List<EllipseGeometry>();
+
 
         Greska g = new Greska();
         KorekcijaPogreske kp = new KorekcijaPogreske();
@@ -40,7 +44,7 @@ namespace DronePositioningSimulator
             InitializeComponent();
         }
 
-        public void postaviVrijednosti(int id, float x, float y, Color b, string naz = "", float gx = 0, float gy = 0, float s = 0, float v = 0)
+        public void postaviVrijednosti(int id, float x, float y, System.Drawing.Color b, string naz = "", float gx = 0, float gy = 0, float s = 0, float v = 0)
         {
             this.IDDron = id;
             this.NazivDron = naz;
@@ -60,7 +64,7 @@ namespace DronePositioningSimulator
 
         private void DronView_Load(object sender, EventArgs e)
         {
-
+            
             this.DoubleBuffered = true;
             this.Paint += new PaintEventHandler(DronView_Paint);
         }
@@ -68,11 +72,12 @@ namespace DronePositioningSimulator
         private void DronView_Paint(object sender, PaintEventArgs e)
         {
             SolidBrush boja = new SolidBrush(this.Boja);
-            Pen olovka = new Pen(this.Boja);
+            System.Drawing.Pen olovka = new System.Drawing.Pen(this.Boja);
             e.Graphics.FillEllipse(boja, this.Size.Width/2 - 5, this.Size.Height/2 - 5, 10, 10);
             this.GreskaX = g.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaX;
             this.GreskaY = g.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaY;
             e.Graphics.DrawEllipse(olovka, this.Size.Width / 2 - this.GreskaX, this.Size.Width / 2 - this.GreskaY, this.GreskaX * 2, this.GreskaY * 2);
+
         }
 
         public void pomakniDron()
@@ -265,6 +270,40 @@ namespace DronePositioningSimulator
 
             }
         }
+
+        public void nacrtajKorigiranuGresku()
+        {
+            EllipseGeometry dronovaElipsa = new EllipseGeometry(new System.Windows.Point(this.TrenX, this.TrenY), this.GreskaX, this.GreskaY);
+            PathGeometry rezultat = dronovaElipsa.GetFlattenedPathGeometry();
+            
+            listaElipsi.Clear();
+            foreach (DronView d in vidljiviDronovi)
+            {
+                float rSim = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.KorX, d.KorY);
+                float R = kp.izracunajPrimljeniSignal(rSim);
+                float r = kp.izracunajUdaljenostPomocuSignala(R);
+                float maliRY = (r - d.GreskaY);
+                float maliRX = (r - d.GreskaX);
+                float malaTockaX = d.TrenX - (r - d.GreskaX);
+                float malaTockaY = d.TrenY - (r - d.GreskaY);
+                EllipseGeometry malaElipsa = new EllipseGeometry(new System.Windows.Point(d.TrenX,d.TrenY),maliRX,maliRY);
+                listaElipsi.Add(malaElipsa);
+
+                float velikiRY = (r + d.GreskaY);
+                float velikiRX = (r + d.GreskaX);
+                float velikaTockaX = d.TrenX - (r + d.GreskaX);
+                float velikaTockaY = d.TrenY - (r + d.GreskaY);
+                EllipseGeometry velikaElipsa = new EllipseGeometry(new System.Windows.Point(d.TrenX, d.TrenY), velikiRX, velikiRY);
+                listaElipsi.Add(velikaElipsa);
+
+                PathGeometry vijenac = new PathGeometry();
+                vijenac = Geometry.Combine(velikaElipsa, malaElipsa,GeometryCombineMode.Exclude,null);
+                rezultat = Geometry.Combine(rezultat, vijenac, GeometryCombineMode.Intersect, null);
+
+
+            }
+        }
+
 
         protected override CreateParams CreateParams
         {

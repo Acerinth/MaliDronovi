@@ -25,18 +25,18 @@ namespace DronePositioningSimulator
                 {
                     if (i >= 0 && i<=200 && j>=0 && j<=300)
                     {
-                        this.polje[i, j].greskaX = 15;
+                        this.polje[i, j].greskaX = 18;
                         this.polje[i, j].greskaY = 12;
                     }
                     if (i > 200 && i <= 400 && j >= 0 && j <= 300)
                     {
                         this.polje[i, j].greskaX = 19;
-                        this.polje[i, j].greskaY = 21;
+                        this.polje[i, j].greskaY = 25;
                     }
                     if (i > 400 && i <= 600 && j >= 0 && j <= 150)
                     {
                         this.polje[i, j].greskaX = 13;
-                        this.polje[i, j].greskaY = 10;
+                        this.polje[i, j].greskaY = 8;
                     }
                     if (i > 600 && i < 800 && j >= 0 && j <= 300)
                     {
@@ -45,18 +45,18 @@ namespace DronePositioningSimulator
                     }
                     if (i >= 0 && i <= 400 && j > 300 && j < 600)
                     {
-                        this.polje[i, j].greskaX = 24;
+                        this.polje[i, j].greskaX = 28;
                         this.polje[i, j].greskaY = 21;
                     }
                     if (i > 400 && i <= 600 && j > 300 && j < 600)
                     {
-                        this.polje[i, j].greskaX = 14;
+                        this.polje[i, j].greskaX = 17;
                         this.polje[i, j].greskaY = 11;
                     }
                     if (i > 600 && i < 800 && j > 300 && j <= 450)
                     {
                         this.polje[i, j].greskaX = 32;
-                        this.polje[i, j].greskaY = 25;
+                        this.polje[i, j].greskaY = 23;
                     }
                 }
             }

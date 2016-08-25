@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace DronePositioningSimulator
 {
@@ -22,7 +23,7 @@ namespace DronePositioningSimulator
         private void frmIzlaz_Load(object sender, EventArgs e)
         {
             this.DoubleBuffered = true;
-            //this.Paint += new PaintEventHandler(frmIzlaz_Paint);
+            this.Paint += new PaintEventHandler(frmIzlaz_Paint);
             foreach (DronView d in DronView.listaDronova)
             {
                 this.Controls.Add(d);
@@ -54,6 +55,20 @@ namespace DronePositioningSimulator
                 e.Graphics.DrawEllipse(olovka, d.TrenX- d.GreskaX, d.TrenY- d.GreskaY, d.GreskaX*2, d.GreskaY*2);
 
             } */
+            foreach (DronView d in DronView.listaDronova)
+            {
+                if (d.rezultat != null)
+                {
+                    
+                    //e.Graphics.FillPath(System.Drawing.Brushes.LightSteelBlue, d.rezultat.GetArea());
+                    
+                }
+                foreach (EllipseGeometry el in d.listaElipsi)
+                {
+                    System.Drawing.Pen olovka = new System.Drawing.Pen(d.Boja);
+                    e.Graphics.DrawEllipse(olovka, (float)(el.Center.X - el.RadiusX), (float)(el.Center.Y - el.RadiusY), (float)(el.RadiusX * 2), (float)(el.RadiusY * 2));
+                }
+            }
             
         }
 
@@ -65,7 +80,7 @@ namespace DronePositioningSimulator
                 d.provjeriRub(this.ClientSize.Width-5, this.ClientSize.Height - 5);
                 d.pomakniDron();
                 d.pronadjiDronove();
-                //d.korigirajMojuLokaciju();
+                d.nacrtajKorigiranuGresku();
             }
             this.Refresh();
         }
@@ -75,7 +90,9 @@ namespace DronePositioningSimulator
             foreach (DronView d in DronView.listaDronova)
             {
                 d.resetrirajTrenutno();
+                this.Controls.Remove(d);
             }
+
         }
         
        
