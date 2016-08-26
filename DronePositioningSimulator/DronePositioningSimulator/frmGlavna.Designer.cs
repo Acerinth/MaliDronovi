@@ -66,6 +66,7 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btnPokreni = new System.Windows.Forms.Button();
             this.btnPauziraj = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostojeciDronovi)).BeginInit();
             this.grpNoviDron.SuspendLayout();
@@ -427,11 +428,22 @@
             this.btnPauziraj.UseVisualStyleBackColor = true;
             this.btnPauziraj.Click += new System.EventHandler(this.btnPauziraj_Click);
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(496, 516);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(147, 55);
+            this.btnReset.TabIndex = 15;
+            this.btnReset.Text = "Resetiraj";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // frmGlavna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 653);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnPauziraj);
             this.Controls.Add(this.btnPokreni);
             this.Controls.Add(this.btnObrisi);
@@ -499,6 +511,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Brzina;
         private System.Windows.Forms.DataGridViewTextBoxColumn Smjer;
         private System.Windows.Forms.Button btnPauziraj;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 

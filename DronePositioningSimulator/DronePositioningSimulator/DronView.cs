@@ -182,6 +182,10 @@ namespace DronePositioningSimulator
             this.TrenY = this.Y;
             this.KorX = this.X;
             this.KorY = this.Y;
+            this.Location = new Point((int)this.X - this.Width / 2, (int)this.Y - this.Height / 2);
+            this.listaElipsi.Clear();
+            this.listaVijenaca.Clear();
+            this.regijaPogreske.MakeEmpty();
         }
 
         public void provjeriRub(int w, int h)
@@ -315,7 +319,6 @@ namespace DronePositioningSimulator
                 regijaPogreske.Intersect(vijenac);
             }
         }
-
 
         protected override CreateParams CreateParams
         {

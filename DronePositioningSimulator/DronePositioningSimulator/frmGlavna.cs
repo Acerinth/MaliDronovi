@@ -147,14 +147,24 @@ namespace DronePositioningSimulator
             btnPauziraj.Enabled = !y;
             btnPokreni.Enabled = y;
             btnObrisi.Enabled = y;
+            btnReset.Enabled = y;
         }
-
 
         private void btnPauziraj_Click(object sender, EventArgs e)
         {
             izlaz.tmrDrawingTimer.Stop();
             izlaz.tmrDrawingTimer.Enabled = false;
             omoguciPonovnoPokretanje(true);
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            foreach (DronView d in DronView.listaDronova)
+            {
+                d.resetrirajTrenutno();
+            }
+            izlaz.Refresh();
+            izlaz.pokaziDronove();
         }
     }
 }
