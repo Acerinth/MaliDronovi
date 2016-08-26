@@ -15,6 +15,8 @@ namespace DronePositioningSimulator
     {
         //Greska g = new Greska();
 
+        public Timer IzlazTimer { get { return tmrDrawingTimer; } } 
+
         public frmIzlaz()
         {
             InitializeComponent();
@@ -24,11 +26,6 @@ namespace DronePositioningSimulator
         {
             this.DoubleBuffered = true;
             this.Paint += new PaintEventHandler(frmIzlaz_Paint);
-            foreach (DronView d in DronView.listaDronova)
-            {
-                this.Controls.Add(d);
-            }
-            
         }
 
         private void frmIzlaz_Paint(object sender, PaintEventArgs e)
@@ -62,14 +59,17 @@ namespace DronePositioningSimulator
                 {
                     e.Graphics.FillRegion(System.Drawing.Brushes.MediumPurple, r);
                 }
-                if (d.regijaPogreske != null)
+                //if (d.regijaPogreske.IsEmpty(e.Graphics))
+                //{ 
+                if (tmrDrawingTimer.Enabled == true)
                 {
                     e.Graphics.FillRegion(System.Drawing.Brushes.MediumAquamarine, d.regijaPogreske);
                 }
-                foreach (System.Drawing.Drawing2D.GraphicsPath gp in d.listaElipsi2)
+                    
+                //}
+                foreach (System.Drawing.Drawing2D.GraphicsPath gp in d.listaElipsi)
                 {
                     System.Drawing.Pen olovka = new System.Drawing.Pen(d.Boja);
-                    //e.Graphics.DrawEllipse(olovka, (float)(el.Center.X - el.RadiusX), (float)(el.Center.Y - el.RadiusY), (float)(el.RadiusX * 2), (float)(el.RadiusY * 2));
                     e.Graphics.DrawPath(olovka, gp);
                 }
             }
@@ -80,11 +80,10 @@ namespace DronePositioningSimulator
         {
             foreach (DronView d in DronView.listaDronova)
             {
-                //d.pocisti();
                 d.provjeriRub(this.ClientSize.Width-5, this.ClientSize.Height - 5);
                 d.pomakniDron();
                 d.pronadjiDronove();
-                d.nacrtajKorigiranuGresku();
+                d.korigirajPogresku();
             }
             this.Refresh();
         }
@@ -97,6 +96,17 @@ namespace DronePositioningSimulator
                 this.Controls.Remove(d);
             }
 
+        }
+
+        public void pokaziDronove()
+        {
+            foreach (DronView d in DronView.listaDronova)
+            {
+                if (!this.Controls.Contains(d))
+                {
+                    this.Controls.Add(d);
+                }
+            }
         }
         
        

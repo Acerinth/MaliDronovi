@@ -34,7 +34,6 @@
             // 
             // tmrDrawingTimer
             // 
-            this.tmrDrawingTimer.Enabled = true;
             this.tmrDrawingTimer.Interval = 30;
             this.tmrDrawingTimer.Tick += new System.EventHandler(this.tmrDrawingTimer_Tick);
             // 
@@ -43,7 +42,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
+            this.Location = new System.Drawing.Point(1100, 100);
             this.Name = "frmIzlaz";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Output Window";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmIzlaz_FormClosed);
             this.Load += new System.EventHandler(this.frmIzlaz_Load);
@@ -54,6 +55,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer tmrDrawingTimer;
+        public System.Windows.Forms.Timer tmrDrawingTimer;
     }
 }

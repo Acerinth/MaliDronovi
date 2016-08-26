@@ -65,6 +65,7 @@
             this.btnObrisi = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btnPokreni = new System.Windows.Forms.Button();
+            this.btnPauziraj = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostojeciDronovi)).BeginInit();
             this.grpNoviDron.SuspendLayout();
@@ -80,7 +81,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1278, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1282, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -415,11 +416,23 @@
             this.btnPokreni.UseVisualStyleBackColor = true;
             this.btnPokreni.Click += new System.EventHandler(this.btnPokreni_Click);
             // 
+            // btnPauziraj
+            // 
+            this.btnPauziraj.Enabled = false;
+            this.btnPauziraj.Location = new System.Drawing.Point(888, 516);
+            this.btnPauziraj.Name = "btnPauziraj";
+            this.btnPauziraj.Size = new System.Drawing.Size(147, 55);
+            this.btnPauziraj.TabIndex = 14;
+            this.btnPauziraj.Text = "Pauziraj";
+            this.btnPauziraj.UseVisualStyleBackColor = true;
+            this.btnPauziraj.Click += new System.EventHandler(this.btnPauziraj_Click);
+            // 
             // frmGlavna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1278, 612);
+            this.ClientSize = new System.Drawing.Size(1282, 653);
+            this.Controls.Add(this.btnPauziraj);
             this.Controls.Add(this.btnPokreni);
             this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.label8);
@@ -429,9 +442,11 @@
             this.Controls.Add(this.rbCSV);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.Location = new System.Drawing.Point(100, 100);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmGlavna";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Drone Positioning Simulator";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -483,6 +498,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Boja;
         private System.Windows.Forms.DataGridViewTextBoxColumn Brzina;
         private System.Windows.Forms.DataGridViewTextBoxColumn Smjer;
+        private System.Windows.Forms.Button btnPauziraj;
     }
 }
 

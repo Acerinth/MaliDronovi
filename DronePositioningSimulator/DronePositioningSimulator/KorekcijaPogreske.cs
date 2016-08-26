@@ -19,17 +19,7 @@ namespace DronePositioningSimulator
             public float y;
         }
 
-        //public struct vidljiviDron
-        //{
-        //    public int id;
-        //    public float R;
-        //    public float x;
-        //    public float y;
-        //}
-
         public List<tocka> listaTocaka = new List<tocka>();
-        //public List<vidljiviDron> vidljiviDronovi = new List<vidljiviDron>();
-
 
         public float izracunajUdaljenost(float x1, float y1, float x2, float y2)
         {

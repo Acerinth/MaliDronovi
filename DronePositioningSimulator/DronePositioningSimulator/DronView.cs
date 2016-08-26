@@ -30,9 +30,8 @@ namespace DronePositioningSimulator
         public float TrenSmjer { set; get; }
         public Region regijaPogreske = new Region();
 
-        public List<EllipseGeometry> listaElipsi = new List<EllipseGeometry>();
         public List<Region> listaVijenaca = new List<Region>();
-        public List<System.Drawing.Drawing2D.GraphicsPath> listaElipsi2 = new List<System.Drawing.Drawing2D.GraphicsPath>();
+        public List<System.Drawing.Drawing2D.GraphicsPath> listaElipsi = new List<System.Drawing.Drawing2D.GraphicsPath>();
 
 
         Greska g = new Greska();
@@ -67,16 +66,16 @@ namespace DronePositioningSimulator
 
         private void DronView_Load(object sender, EventArgs e)
         {
-            
             this.DoubleBuffered = true;
             this.Paint += new PaintEventHandler(DronView_Paint);
+            regijaPogreske.MakeEmpty();
+            this.Location = new Point((int)this.X-this.Width/2, (int)this.Y-this.Height/2);
         }
 
         private void DronView_Paint(object sender, PaintEventArgs e)
         {
             SolidBrush boja = new SolidBrush(this.Boja);
             System.Drawing.Pen olovka = new System.Drawing.Pen(this.Boja);
-            //if (this.regijaPogreske != null) e.Graphics.FillRegion(System.Drawing.Brushes.Aquamarine, regijaPogreske);
             e.Graphics.FillEllipse(boja, this.Size.Width/2 - 5, this.Size.Height/2 - 5, 10, 10);
             this.GreskaX = g.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaX;
             this.GreskaY = g.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaY;
@@ -275,22 +274,16 @@ namespace DronePositioningSimulator
             }
         }
 
-        public void nacrtajKorigiranuGresku()
+        public void korigirajPogresku()
         {
-            //EllipseGeometry dronovaElipsa = new EllipseGeometry(new System.Windows.Point(this.TrenX, this.TrenY), this.GreskaX, this.GreskaY);
-            //PathGeometry rezultat = dronovaElipsa.GetFlattenedPathGeometry();
-
-            //RectangleF dronovaElipsaR = new RectangleF(this.TrenX - this.GreskaX, this.TrenY - this.GreskaY, this.GreskaX * 2, this.GreskaY * 2);
-
             regijaPogreske.MakeEmpty();
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(this.TrenX - this.GreskaX, this.TrenY - this.GreskaY, this.GreskaX * 2, this.GreskaY * 2);
             regijaPogreske.Union(gp);
-            
 
             listaElipsi.Clear();
             listaVijenaca.Clear();
-            listaElipsi2.Clear();
+            listaElipsi.Clear();
             foreach (DronView d in vidljiviDronovi)
             {
                 float rSim = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.KorX, d.KorY);
@@ -300,30 +293,21 @@ namespace DronePositioningSimulator
                 float maliRX = (r - d.GreskaX);
                 float malaTockaX = d.TrenX - (r - d.GreskaX);
                 float malaTockaY = d.TrenY - (r - d.GreskaY);
-                EllipseGeometry malaElipsa = new EllipseGeometry(new System.Windows.Point(d.TrenX,d.TrenY),maliRX,maliRY);
-                listaElipsi.Add(malaElipsa);
 
                 float velikiRY = (r + d.GreskaY);
                 float velikiRX = (r + d.GreskaX);
                 float velikaTockaX = d.TrenX - (r + d.GreskaX);
                 float velikaTockaY = d.TrenY - (r + d.GreskaY);
-                EllipseGeometry velikaElipsa = new EllipseGeometry(new System.Windows.Point(d.TrenX, d.TrenY), velikiRX, velikiRY);
-                listaElipsi.Add(velikaElipsa);
-
-                //PathGeometry vijenac = new PathGeometry();
-                //vijenac = Geometry.Combine(velikaElipsa, malaElipsa,GeometryCombineMode.Exclude,null);
-                //rezultat = Geometry.Combine(rezultat, vijenac, GeometryCombineMode.Intersect, null);
 
                 Region vijenac = new Region();
                 System.Drawing.Drawing2D.GraphicsPath gpeMala = new System.Drawing.Drawing2D.GraphicsPath();
                 gpeMala.AddEllipse(malaTockaX, malaTockaY, maliRX * 2, maliRY * 2);
-                listaElipsi2.Add(gpeMala);
+                listaElipsi.Add(gpeMala);
 
                 System.Drawing.Drawing2D.GraphicsPath gpeVelika = new System.Drawing.Drawing2D.GraphicsPath();
                 gpeVelika.AddEllipse(velikaTockaX, velikaTockaY, velikiRX*2, velikiRY*2);
-                listaElipsi2.Add(gpeVelika);
+                listaElipsi.Add(gpeVelika);
                 
-                //vijenac.Union(gpeVelika);
                 vijenac.Intersect(gpeVelika);
                 vijenac.Exclude(gpeMala);
                 

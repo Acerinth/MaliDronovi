@@ -18,6 +18,7 @@ namespace DronePositioningSimulator
         float pozY;
         float s;
         float v;
+        frmIzlaz izlaz;
 
         public frmGlavna()
         {
@@ -58,6 +59,8 @@ namespace DronePositioningSimulator
             this.txtBrzina.Text = "0";
             this.txtSmjerX.Text = "0";
             dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
+            izlaz = new frmIzlaz();
+            izlaz.Show();
         }
 
         private void rbRucno_CheckedChanged(object sender, EventArgs e)
@@ -93,21 +96,27 @@ namespace DronePositioningSimulator
             if (DronView.listaDronova.Count > 0)
             {
                 omoguciGumbe(true);
+                izlaz.pokaziDronove();
             }
         }
 
         private void btnObrisi_Click(object sender, EventArgs e)
         {
             int index = dgvPostojeciDronovi.CurrentRow.Index;
+            izlaz.Controls.Remove(DronView.listaDronova.ElementAt(index));
             DronView.listaDronova.RemoveAt(index);
             //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
             dgvPostojeciDronovi.DataSource = DronView.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
+            
             if (DronView.listaDronova.Count > 0)
             {
                 omoguciGumbe(true);
+                izlaz.Refresh();
+                izlaz.pokaziDronove();
             }
             else
             {
+                izlaz.Refresh();
                 omoguciGumbe(false);
             }
         }
@@ -121,14 +130,31 @@ namespace DronePositioningSimulator
 
         private void btnPokreni_Click(object sender, EventArgs e)
         {
-            frmIzlaz izlaz = new frmIzlaz();
-            izlaz.Show();
+            
+            izlaz.tmrDrawingTimer.Enabled = true;
+            izlaz.tmrDrawingTimer.Start();
+            omoguciPonovnoPokretanje(false);
         }
 
         private void omoguciGumbe(bool y)
         {
             this.btnObrisi.Enabled = y;
             this.btnPokreni.Enabled = y;
+        }
+
+        private void omoguciPonovnoPokretanje (bool y)
+        {
+            btnPauziraj.Enabled = !y;
+            btnPokreni.Enabled = y;
+            btnObrisi.Enabled = y;
+        }
+
+
+        private void btnPauziraj_Click(object sender, EventArgs e)
+        {
+            izlaz.tmrDrawingTimer.Stop();
+            izlaz.tmrDrawingTimer.Enabled = false;
+            omoguciPonovnoPokretanje(true);
         }
     }
 }
