@@ -57,16 +57,20 @@ namespace DronePositioningSimulator
             } */
             foreach (DronView d in DronView.listaDronova)
             {
-                if (d.rezultat != null)
+                
+                foreach (Region r in d.listaVijenaca)
                 {
-                    
-                    //e.Graphics.FillPath(System.Drawing.Brushes.LightSteelBlue, d.rezultat.GetArea());
-                    
+                    e.Graphics.FillRegion(System.Drawing.Brushes.MediumPurple, r);
                 }
-                foreach (EllipseGeometry el in d.listaElipsi)
+                if (d.regijaPogreske != null)
+                {
+                    e.Graphics.FillRegion(System.Drawing.Brushes.MediumAquamarine, d.regijaPogreske);
+                }
+                foreach (System.Drawing.Drawing2D.GraphicsPath gp in d.listaElipsi2)
                 {
                     System.Drawing.Pen olovka = new System.Drawing.Pen(d.Boja);
-                    e.Graphics.DrawEllipse(olovka, (float)(el.Center.X - el.RadiusX), (float)(el.Center.Y - el.RadiusY), (float)(el.RadiusX * 2), (float)(el.RadiusY * 2));
+                    //e.Graphics.DrawEllipse(olovka, (float)(el.Center.X - el.RadiusX), (float)(el.Center.Y - el.RadiusY), (float)(el.RadiusX * 2), (float)(el.RadiusY * 2));
+                    e.Graphics.DrawPath(olovka, gp);
                 }
             }
             

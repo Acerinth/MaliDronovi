@@ -28,8 +28,11 @@ namespace DronePositioningSimulator
         public float KorX { set; get; }
         public float KorY { set; get; }
         public float TrenSmjer { set; get; }
-        public PathGeometry rezultat;
+        public Region regijaPogreske = new Region();
+
         public List<EllipseGeometry> listaElipsi = new List<EllipseGeometry>();
+        public List<Region> listaVijenaca = new List<Region>();
+        public List<System.Drawing.Drawing2D.GraphicsPath> listaElipsi2 = new List<System.Drawing.Drawing2D.GraphicsPath>();
 
 
         Greska g = new Greska();
@@ -73,6 +76,7 @@ namespace DronePositioningSimulator
         {
             SolidBrush boja = new SolidBrush(this.Boja);
             System.Drawing.Pen olovka = new System.Drawing.Pen(this.Boja);
+            //if (this.regijaPogreske != null) e.Graphics.FillRegion(System.Drawing.Brushes.Aquamarine, regijaPogreske);
             e.Graphics.FillEllipse(boja, this.Size.Width/2 - 5, this.Size.Height/2 - 5, 10, 10);
             this.GreskaX = g.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaX;
             this.GreskaY = g.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaY;
@@ -273,10 +277,20 @@ namespace DronePositioningSimulator
 
         public void nacrtajKorigiranuGresku()
         {
-            EllipseGeometry dronovaElipsa = new EllipseGeometry(new System.Windows.Point(this.TrenX, this.TrenY), this.GreskaX, this.GreskaY);
-            PathGeometry rezultat = dronovaElipsa.GetFlattenedPathGeometry();
+            //EllipseGeometry dronovaElipsa = new EllipseGeometry(new System.Windows.Point(this.TrenX, this.TrenY), this.GreskaX, this.GreskaY);
+            //PathGeometry rezultat = dronovaElipsa.GetFlattenedPathGeometry();
+
+            //RectangleF dronovaElipsaR = new RectangleF(this.TrenX - this.GreskaX, this.TrenY - this.GreskaY, this.GreskaX * 2, this.GreskaY * 2);
+
+            regijaPogreske.MakeEmpty();
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            gp.AddEllipse(this.TrenX - this.GreskaX, this.TrenY - this.GreskaY, this.GreskaX * 2, this.GreskaY * 2);
+            regijaPogreske.Union(gp);
             
+
             listaElipsi.Clear();
+            listaVijenaca.Clear();
+            listaElipsi2.Clear();
             foreach (DronView d in vidljiviDronovi)
             {
                 float rSim = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.KorX, d.KorY);
@@ -296,11 +310,25 @@ namespace DronePositioningSimulator
                 EllipseGeometry velikaElipsa = new EllipseGeometry(new System.Windows.Point(d.TrenX, d.TrenY), velikiRX, velikiRY);
                 listaElipsi.Add(velikaElipsa);
 
-                PathGeometry vijenac = new PathGeometry();
-                vijenac = Geometry.Combine(velikaElipsa, malaElipsa,GeometryCombineMode.Exclude,null);
-                rezultat = Geometry.Combine(rezultat, vijenac, GeometryCombineMode.Intersect, null);
+                //PathGeometry vijenac = new PathGeometry();
+                //vijenac = Geometry.Combine(velikaElipsa, malaElipsa,GeometryCombineMode.Exclude,null);
+                //rezultat = Geometry.Combine(rezultat, vijenac, GeometryCombineMode.Intersect, null);
 
+                Region vijenac = new Region();
+                System.Drawing.Drawing2D.GraphicsPath gpeMala = new System.Drawing.Drawing2D.GraphicsPath();
+                gpeMala.AddEllipse(malaTockaX, malaTockaY, maliRX * 2, maliRY * 2);
+                listaElipsi2.Add(gpeMala);
 
+                System.Drawing.Drawing2D.GraphicsPath gpeVelika = new System.Drawing.Drawing2D.GraphicsPath();
+                gpeVelika.AddEllipse(velikaTockaX, velikaTockaY, velikiRX*2, velikiRY*2);
+                listaElipsi2.Add(gpeVelika);
+                
+                //vijenac.Union(gpeVelika);
+                vijenac.Intersect(gpeVelika);
+                vijenac.Exclude(gpeMala);
+                
+                listaVijenaca.Add(vijenac);
+                regijaPogreske.Intersect(vijenac);
             }
         }
 
