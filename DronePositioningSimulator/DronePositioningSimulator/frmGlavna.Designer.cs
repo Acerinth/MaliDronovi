@@ -67,6 +67,7 @@
             this.btnPokreni = new System.Windows.Forms.Button();
             this.btnPauziraj = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostojeciDronovi)).BeginInit();
             this.grpNoviDron.SuspendLayout();
@@ -103,13 +104,13 @@
             // postavkeToolStripMenuItem
             // 
             this.postavkeToolStripMenuItem.Name = "postavkeToolStripMenuItem";
-            this.postavkeToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            this.postavkeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.postavkeToolStripMenuItem.Text = "Postavke";
             // 
             // zatvoriToolStripMenuItem
             // 
             this.zatvoriToolStripMenuItem.Name = "zatvoriToolStripMenuItem";
-            this.zatvoriToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            this.zatvoriToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.zatvoriToolStripMenuItem.Text = "Zatvori";
             // 
             // pomoćToolStripMenuItem
@@ -438,11 +439,22 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(165, 516);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(147, 55);
+            this.btnExport.TabIndex = 16;
+            this.btnExport.Text = "Spremi rezultate";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // frmGlavna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 653);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnPauziraj);
             this.Controls.Add(this.btnPokreni);
@@ -512,6 +524,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Smjer;
         private System.Windows.Forms.Button btnPauziraj;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnExport;
     }
 }
 

@@ -280,6 +280,8 @@ namespace DronePositioningSimulator
 
         public void korigirajPogresku()
         {
+            string zapis = String.Empty;
+
             regijaPogreske.MakeEmpty();
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(this.TrenX - this.GreskaX, this.TrenY - this.GreskaY, this.GreskaX * 2, this.GreskaY * 2);
@@ -317,6 +319,9 @@ namespace DronePositioningSimulator
                 
                 listaVijenaca.Add(vijenac);
                 regijaPogreske.Intersect(vijenac);
+
+                zapis = this.IDDron.ToString() + "\t" + this.NazivDron.ToString() + "\t" + "bla bla bla" + "\r\n";
+                frmGlavna.listaRezultata.Add(zapis);
             }
         }
 

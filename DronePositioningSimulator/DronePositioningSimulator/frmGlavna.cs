@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Device.Location;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +21,12 @@ namespace DronePositioningSimulator
         float v;
         frmIzlaz izlaz;
 
+        public static List<string> listaRezultata = new List<string>();
+
         public frmGlavna()
         {
             InitializeComponent();
         }
-
-        
 
         private bool ProvjeriIspravnost()
         {
@@ -159,12 +160,23 @@ namespace DronePositioningSimulator
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            listaRezultata.Clear();
             foreach (DronView d in DronView.listaDronova)
             {
                 d.resetrirajTrenutno();
             }
             izlaz.Refresh();
             izlaz.pokaziDronove();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            StreamWriter dat = new StreamWriter("rezultat.txt");
+            foreach (string z in listaRezultata)
+            {
+                dat.Write(z);
+            }
+            dat.Close();
         }
     }
 }

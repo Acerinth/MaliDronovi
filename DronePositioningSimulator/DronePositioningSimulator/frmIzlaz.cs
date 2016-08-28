@@ -15,8 +15,6 @@ namespace DronePositioningSimulator
     {
         //Greska g = new Greska();
 
-        public Timer IzlazTimer { get { return tmrDrawingTimer; } } 
-
         public frmIzlaz()
         {
             InitializeComponent();
