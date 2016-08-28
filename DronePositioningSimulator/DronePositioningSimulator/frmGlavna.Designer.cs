@@ -104,13 +104,13 @@
             // postavkeToolStripMenuItem
             // 
             this.postavkeToolStripMenuItem.Name = "postavkeToolStripMenuItem";
-            this.postavkeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.postavkeToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.postavkeToolStripMenuItem.Text = "Postavke";
             // 
             // zatvoriToolStripMenuItem
             // 
             this.zatvoriToolStripMenuItem.Name = "zatvoriToolStripMenuItem";
-            this.zatvoriToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.zatvoriToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.zatvoriToolStripMenuItem.Text = "Zatvori";
             // 
             // pomoćToolStripMenuItem
@@ -410,7 +410,7 @@
             // btnPokreni
             // 
             this.btnPokreni.Enabled = false;
-            this.btnPokreni.Location = new System.Drawing.Point(1078, 516);
+            this.btnPokreni.Location = new System.Drawing.Point(1077, 531);
             this.btnPokreni.Name = "btnPokreni";
             this.btnPokreni.Size = new System.Drawing.Size(147, 55);
             this.btnPokreni.TabIndex = 13;
@@ -421,7 +421,7 @@
             // btnPauziraj
             // 
             this.btnPauziraj.Enabled = false;
-            this.btnPauziraj.Location = new System.Drawing.Point(888, 516);
+            this.btnPauziraj.Location = new System.Drawing.Point(908, 531);
             this.btnPauziraj.Name = "btnPauziraj";
             this.btnPauziraj.Size = new System.Drawing.Size(147, 55);
             this.btnPauziraj.TabIndex = 14;
@@ -431,7 +431,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(496, 516);
+            this.btnReset.Location = new System.Drawing.Point(495, 531);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(147, 55);
             this.btnReset.TabIndex = 15;
@@ -441,7 +441,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(165, 516);
+            this.btnExport.Location = new System.Drawing.Point(681, 531);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(147, 55);
             this.btnExport.TabIndex = 16;
