@@ -14,14 +14,14 @@ namespace DronePositioningSimulator
 {
     public partial class frmGlavna : Form
     {
+        public static List<string> listaRezultata = new List<string>();
+
         int id;
         float pozX;
         float pozY;
         float s;
         float v;
         frmIzlaz izlaz;
-
-        public static List<string> listaRezultata = new List<string>();
 
         public frmGlavna()
         {

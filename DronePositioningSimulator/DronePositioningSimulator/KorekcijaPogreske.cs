@@ -13,14 +13,6 @@ namespace DronePositioningSimulator
         float f = 2450000000;
         float n = 2;
 
-        public struct tocka
-        {
-            public float x;
-            public float y;
-        }
-
-        public List<tocka> listaTocaka = new List<tocka>();
-
         public float izracunajUdaljenost(float x1, float y1, float x2, float y2)
         {
             float r;

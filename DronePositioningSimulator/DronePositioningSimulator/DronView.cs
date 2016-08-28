@@ -13,7 +13,9 @@ namespace DronePositioningSimulator
 {
     public partial class DronView : UserControl
     {
-        public int minSignal = -90;
+        public static List<DronView> listaDronova = new List<DronView>();
+
+        public int MinSignal = -90;
         public int IDDron { set; get; }
         public string NazivDron { set; get; }
         public float X { set; get; }
@@ -25,21 +27,15 @@ namespace DronePositioningSimulator
         public float Brzina { set; get; }
         public float TrenX { set; get; }
         public float TrenY { set; get; }
-        public float KorX { set; get; }
-        public float KorY { set; get; }
         public float TrenSmjer { set; get; }
         public Region regijaPogreske = new Region();
 
         public List<Region> listaVijenaca = new List<Region>();
-        public List<System.Drawing.Drawing2D.GraphicsPath> listaElipsi = new List<System.Drawing.Drawing2D.GraphicsPath>();
-
+        public List<System.Drawing.Drawing2D.GraphicsPath> listaElipsi = new List<System.Drawing.Drawing2D.GraphicsPath>();        
+        public List<DronView> vidljiviDronovi = new List<DronView>();
 
         Greska g = new Greska();
         KorekcijaPogreske kp = new KorekcijaPogreske();
-
-        public static List<DronView> listaDronova = new List<DronView>();
-        public List<DronView> vidljiviDronovi = new List<DronView>();
-
 
         public DronView()
         {
@@ -60,8 +56,6 @@ namespace DronePositioningSimulator
             this.Brzina = v;
             this.TrenX = x;
             this.TrenY = y;
-            this.KorX = x;
-            this.KorY = y;
         }
 
         private void DronView_Load(object sender, EventArgs e)
@@ -121,8 +115,6 @@ namespace DronePositioningSimulator
             {
                 this.TrenY -= izracunajPomakY(this.TrenY, this.TrenSmjer, this.Brzina);
             }
-            this.KorX = this.TrenX;
-            this.KorY = this.TrenY;
             this.Location = new Point((int)this.TrenX - this.Size.Width/2, (int)this.TrenY - this.Size.Height/2);
             
         }
@@ -180,8 +172,6 @@ namespace DronePositioningSimulator
             this.TrenSmjer = this.Smjer;
             this.TrenX = this.X;
             this.TrenY = this.Y;
-            this.KorX = this.X;
-            this.KorY = this.Y;
             this.Location = new Point((int)this.X - this.Width / 2, (int)this.Y - this.Height / 2);
             this.listaElipsi.Clear();
             this.listaVijenaca.Clear();
@@ -224,40 +214,6 @@ namespace DronePositioningSimulator
             }
         }
 
-        public float generirajX(float x, float ex)
-        {
-            float noviX;
-            Random r = new Random();
-            int pomak = r.Next(0, (int)Math.Floor((decimal)ex));
-            int znak = r.Next(0, 1);
-            if (znak == 1)
-            {
-                noviX = x + pomak;
-            }
-            else
-            {
-                noviX = x - pomak;
-            }
-            return noviX;
-        }
-
-        public float generirajY(float y, float ey)
-        {
-            float noviY;
-            Random r = new Random();
-            int pomak = r.Next(0, (int)Math.Floor((decimal)ey));
-            int znak = r.Next(0, 1);
-            if (znak == 1)
-            {
-                noviY = y + pomak;
-            }
-            else
-            {
-                noviY = y - pomak;
-            }
-            return noviY;
-        }
-
         public void pronadjiDronove()
         {
             vidljiviDronovi.Clear();
@@ -267,9 +223,9 @@ namespace DronePositioningSimulator
                 float R;
                 if (d.IDDron != this.IDDron)
                 {
-                    r = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.KorX, d.KorY);
+                    r = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.TrenX, d.TrenY);
                     R = kp.izracunajPrimljeniSignal(r);
-                    if (R > this.minSignal)
+                    if (R > this.MinSignal)
                     {
                         vidljiviDronovi.Add(d);
                     }
@@ -290,9 +246,10 @@ namespace DronePositioningSimulator
             listaElipsi.Clear();
             listaVijenaca.Clear();
             listaElipsi.Clear();
+
             foreach (DronView d in vidljiviDronovi)
             {
-                float rSim = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.KorX, d.KorY);
+                float rSim = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.TrenX, d.TrenX);
                 float R = kp.izracunajPrimljeniSignal(rSim);
                 float r = kp.izracunajUdaljenostPomocuSignala(R);
                 float maliRY = (r - d.GreskaY);
@@ -319,10 +276,10 @@ namespace DronePositioningSimulator
                 
                 listaVijenaca.Add(vijenac);
                 regijaPogreske.Intersect(vijenac);
-
-                zapis = this.IDDron.ToString() + "\t" + this.NazivDron.ToString() + "\t" + "bla bla bla" + "\r\n";
-                frmGlavna.listaRezultata.Add(zapis);
+                
             }
+            zapis = this.IDDron.ToString() + "\t" + this.NazivDron.ToString() + "\t" + "bla bla bla" + "\r\n";
+            frmGlavna.listaRezultata.Add(zapis);
         }
 
         protected override CreateParams CreateParams

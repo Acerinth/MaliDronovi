@@ -57,14 +57,12 @@ namespace DronePositioningSimulator
                 {
                     e.Graphics.FillRegion(System.Drawing.Brushes.MediumPurple, r);
                 }
-                //if (d.regijaPogreske.IsEmpty(e.Graphics))
-                //{ 
+
                 if (tmrDrawingTimer.Enabled == true)
                 {
                     e.Graphics.FillRegion(System.Drawing.Brushes.MediumAquamarine, d.regijaPogreske);
                 }
                     
-                //}
                 foreach (System.Drawing.Drawing2D.GraphicsPath gp in d.listaElipsi)
                 {
                     System.Drawing.Pen olovka = new System.Drawing.Pen(d.Boja);
