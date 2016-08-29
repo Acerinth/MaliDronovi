@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media;
+using NetTopologySuite;
+using GeoAPI.Geometries;
 
 namespace DronePositioningSimulator
 {
@@ -247,9 +249,16 @@ namespace DronePositioningSimulator
             listaVijenaca.Clear();
             listaElipsi.Clear();
 
+            NetTopologySuite.Geometries.GeometryFactory g = new NetTopologySuite.Geometries.GeometryFactory();
+            NetTopologySuite.Utilities.GeometricShapeFactory proba = new NetTopologySuite.Utilities.GeometricShapeFactory();
+            
+            
+
+
+
             foreach (DronView d in vidljiviDronovi)
             {
-                float rSim = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.TrenX, d.TrenX);
+                float rSim = kp.izracunajUdaljenost(this.TrenX, this.TrenY, d.TrenX, d.TrenY);
                 float R = kp.izracunajPrimljeniSignal(rSim);
                 float r = kp.izracunajUdaljenostPomocuSignala(R);
                 float maliRY = (r - d.GreskaY);
@@ -276,10 +285,15 @@ namespace DronePositioningSimulator
                 
                 listaVijenaca.Add(vijenac);
                 regijaPogreske.Intersect(vijenac);
+
                 
             }
             zapis = this.IDDron.ToString() + "\t" + this.NazivDron.ToString() + "\t" + "bla bla bla" + "\r\n";
             frmGlavna.listaRezultata.Add(zapis);
+
+            
+
+
         }
 
         protected override CreateParams CreateParams
