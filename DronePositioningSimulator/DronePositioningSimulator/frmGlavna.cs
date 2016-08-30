@@ -15,6 +15,7 @@ namespace DronePositioningSimulator
     public partial class frmGlavna : Form
     {
         public static List<string> listaRezultata = new List<string>();
+        Greska g = new Greska();
 
         int id;
         float pozX;

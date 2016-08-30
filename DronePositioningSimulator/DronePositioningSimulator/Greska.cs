@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DronePositioningSimulator
 {
-    class Greska
+    public class Greska
     {
         public struct tGreska
         {
@@ -14,54 +14,59 @@ namespace DronePositioningSimulator
             public float greskaY;
         }
 
-        public tGreska[,] polje = new tGreska[800,600];
-        
+        public static tGreska[,] polje;
+
         public Greska()
         {
+            kreirajPolje();
+        }
+
+        private void kreirajPolje()
+        {
+            polje = new tGreska[800, 600];
             Random r = new Random();
             for (int i = 0; i < 800; i++)
             {
                 for (int j = 0; j < 600; j++)
                 {
-                    if (i >= 0 && i<=200 && j>=0 && j<=300)
+                    if (i >= 0 && i <= 200 && j >= 0 && j <= 300)
                     {
-                        this.polje[i, j].greskaX = 18;
-                        this.polje[i, j].greskaY = 12;
+                        polje[i, j].greskaX = 18;
+                        polje[i, j].greskaY = 12;
                     }
-                    if (i > 200 && i <= 400 && j >= 0 && j <= 300)
+                    else if (i > 200 && i <= 400 && j >= 0 && j <= 300)
                     {
-                        this.polje[i, j].greskaX = 19;
-                        this.polje[i, j].greskaY = 25;
+                        polje[i, j].greskaX = 19;
+                        polje[i, j].greskaY = 25;
                     }
-                    if (i > 400 && i <= 600 && j >= 0 && j <= 150)
+                    else if (i > 400 && i <= 600 && j >= 0 && j <= 150)
                     {
-                        this.polje[i, j].greskaX = 13;
-                        this.polje[i, j].greskaY = 8;
+                        polje[i, j].greskaX = 13;
+                        polje[i, j].greskaY = 8;
                     }
-                    if (i > 600 && i < 800 && j >= 0 && j <= 300)
+                    else if (i > 400 && i < 800 && j >= 0 && j <= 300)
                     {
-                        this.polje[i, j].greskaX = 8;
-                        this.polje[i, j].greskaY = 12;
+                        polje[i, j].greskaX = 8;
+                        polje[i, j].greskaY = 12;
                     }
-                    if (i >= 0 && i <= 400 && j > 300 && j < 600)
+                    else if (i >= 0 && i <= 400 && j > 300 && j < 600)
                     {
-                        this.polje[i, j].greskaX = 28;
-                        this.polje[i, j].greskaY = 21;
+                        polje[i, j].greskaX = 28;
+                        polje[i, j].greskaY = 21;
                     }
-                    if (i > 400 && i <= 600 && j > 300 && j < 600)
+                    else if (i > 600 && i < 800 && j > 300 && j <= 450)
                     {
-                        this.polje[i, j].greskaX = 17;
-                        this.polje[i, j].greskaY = 11;
+                        polje[i, j].greskaX = 32;
+                        polje[i, j].greskaY = 23;
                     }
-                    if (i > 600 && i < 800 && j > 300 && j <= 450)
+                    else if (i > 400 && i <= 800 && j > 300 && j < 600)
                     {
-                        this.polje[i, j].greskaX = 32;
-                        this.polje[i, j].greskaY = 23;
+                        polje[i, j].greskaX = 17;
+                        polje[i, j].greskaY = 11;
                     }
                 }
             }
         }
-
 
     }
 }

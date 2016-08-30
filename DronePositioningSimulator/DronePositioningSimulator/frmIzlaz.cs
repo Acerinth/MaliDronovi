@@ -13,7 +13,6 @@ namespace DronePositioningSimulator
 {
     public partial class frmIzlaz : Form
     {
-        //Greska g = new Greska();
 
         public frmIzlaz()
         {
