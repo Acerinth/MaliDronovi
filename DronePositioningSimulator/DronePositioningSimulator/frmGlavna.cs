@@ -149,6 +149,7 @@ namespace DronePositioningSimulator
             btnPokreni.Enabled = y;
             btnObrisi.Enabled = y;
             btnReset.Enabled = y;
+            btnExport.Enabled = y;
         }
 
         private void btnPauziraj_Click(object sender, EventArgs e)

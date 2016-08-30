@@ -247,14 +247,15 @@ namespace DronePositioningSimulator
 
             listaElipsi.Clear();
             listaVijenaca.Clear();
-            listaElipsi.Clear();
 
-            NetTopologySuite.Geometries.GeometryFactory g = new NetTopologySuite.Geometries.GeometryFactory();
-            NetTopologySuite.Utilities.GeometricShapeFactory proba = new NetTopologySuite.Utilities.GeometricShapeFactory();
+            NetTopologySuite.Utilities.GeometricShapeFactory gsf = new NetTopologySuite.Utilities.GeometricShapeFactory();
+            gsf.Centre = new Coordinate(this.TrenX, this.TrenY);
+            gsf.Height = this.GreskaY * 2;
+            gsf.Width = this.GreskaX * 2;
+            var pocetnaRegijaRacun = gsf.CeateEllipse();
             
-            
-
-
+            NetTopologySuite.Geometries.Utilities.GeometryTransformer t = new NetTopologySuite.Geometries.Utilities.GeometryTransformer();
+            var regijaPogreskeRacun = t.Transform(pocetnaRegijaRacun);
 
             foreach (DronView d in vidljiviDronovi)
             {
@@ -276,19 +277,32 @@ namespace DronePositioningSimulator
                 gpeMala.AddEllipse(malaTockaX, malaTockaY, maliRX * 2, maliRY * 2);
                 listaElipsi.Add(gpeMala);
 
+                gsf.Centre = new Coordinate(d.TrenX, d.TrenY);
+                gsf.Height = maliRY*2;
+                gsf.Width = maliRX*2;
+                var malaRacun = gsf.CeateEllipse();
+
                 System.Drawing.Drawing2D.GraphicsPath gpeVelika = new System.Drawing.Drawing2D.GraphicsPath();
                 gpeVelika.AddEllipse(velikaTockaX, velikaTockaY, velikiRX*2, velikiRY*2);
                 listaElipsi.Add(gpeVelika);
-                
+
+                gsf.Height = velikiRY*2;
+                gsf.Width = velikiRX*2;
+                var velikaRacun = gsf.CeateEllipse();
+
                 vijenac.Intersect(gpeVelika);
                 vijenac.Exclude(gpeMala);
+
+                var vijenacRacun = velikaRacun.Difference(malaRacun);
                 
                 listaVijenaca.Add(vijenac);
                 regijaPogreske.Intersect(vijenac);
 
+                regijaPogreskeRacun = regijaPogreskeRacun.Intersection(vijenacRacun);
+
                 
             }
-            zapis = this.IDDron.ToString() + "\t" + this.NazivDron.ToString() + "\t" + "bla bla bla" + "\r\n";
+            zapis = this.IDDron.ToString() + "\t" + this.NazivDron.ToString() + "\t" + this.TrenX.ToString() + ", " + this.TrenY.ToString() + "\t" + regijaPogreskeRacun.Centroid.ToString() + "\t" + pocetnaRegijaRacun.Area.ToString() + "\t" + regijaPogreskeRacun.Area.ToString() + "\r\n";
             frmGlavna.listaRezultata.Add(zapis);
 
             
