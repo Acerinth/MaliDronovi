@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DronePositioningSimulator
 {
-    public class Greska
+    public class GeneratorGreske
     {
         public struct tGreska
         {
@@ -16,7 +16,7 @@ namespace DronePositioningSimulator
 
         public static tGreska[,] polje;
 
-        public Greska()
+        public GeneratorGreske()
         {
             kreirajPolje();
         }

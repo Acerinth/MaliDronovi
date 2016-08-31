@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Greska.cs" />
     <Compile Include="KorekcijaPogreske.cs" />
+    <Compile Include="Okidac.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DronView.resx">

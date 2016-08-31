@@ -68,6 +68,7 @@
             this.btnPauziraj = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostojeciDronovi)).BeginInit();
             this.grpNoviDron.SuspendLayout();
@@ -104,14 +105,15 @@
             // postavkeToolStripMenuItem
             // 
             this.postavkeToolStripMenuItem.Name = "postavkeToolStripMenuItem";
-            this.postavkeToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            this.postavkeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.postavkeToolStripMenuItem.Text = "Postavke";
             // 
             // zatvoriToolStripMenuItem
             // 
             this.zatvoriToolStripMenuItem.Name = "zatvoriToolStripMenuItem";
-            this.zatvoriToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            this.zatvoriToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.zatvoriToolStripMenuItem.Text = "Zatvori";
+            this.zatvoriToolStripMenuItem.Click += new System.EventHandler(this.zatvoriToolStripMenuItem_Click);
             // 
             // pomoćToolStripMenuItem
             // 
@@ -450,6 +452,11 @@
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "txt";
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
             // frmGlavna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -526,6 +533,7 @@
         private System.Windows.Forms.Button btnPauziraj;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

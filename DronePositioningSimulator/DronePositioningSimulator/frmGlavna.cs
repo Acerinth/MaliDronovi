@@ -15,14 +15,15 @@ namespace DronePositioningSimulator
     public partial class frmGlavna : Form
     {
         public static List<string> listaRezultata = new List<string>();
-        Greska g = new Greska();
+        public static GeneratorGreske g = new GeneratorGreske();
 
         int id;
         float pozX;
         float pozY;
         float s;
         float v;
-        frmIzlaz izlaz;
+        public frmIzlaz izlaz;
+        //Okidac o = new Okidac();
 
         public frmGlavna()
         {
@@ -179,6 +180,18 @@ namespace DronePositioningSimulator
                 dat.Write(z);
             }
             dat.Close();
+
+            MessageBox.Show("Uspješno spremljeno.", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void zatvoriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            
         }
     }
 }

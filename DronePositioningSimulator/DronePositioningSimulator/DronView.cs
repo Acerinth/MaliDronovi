@@ -73,8 +73,8 @@ namespace DronePositioningSimulator
             SolidBrush boja = new SolidBrush(this.Boja);
             System.Drawing.Pen olovka = new System.Drawing.Pen(this.Boja);
             e.Graphics.FillEllipse(boja, this.Size.Width/2 - 5, this.Size.Height/2 - 5, 10, 10);
-            this.GreskaX = Greska.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaX;
-            this.GreskaY = Greska.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaY;
+            this.GreskaX = GeneratorGreske.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaX;
+            this.GreskaY = GeneratorGreske.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaY;
             e.Graphics.DrawEllipse(olovka, this.Size.Width / 2 - this.GreskaX, this.Size.Width / 2 - this.GreskaY, this.GreskaX * 2, this.GreskaY * 2);
 
         }
@@ -304,8 +304,12 @@ namespace DronePositioningSimulator
             }
 
             float postotak = (float)regijaPogreskeRacun.Area / (float)pocetnaRegijaRacun.Area;
-            postotak = (1 - postotak)*100;
-            zapis = this.IDDron.ToString() + "\t" + this.NazivDron.ToString() + "\t" + this.TrenX.ToString() + ", " + this.TrenY.ToString() + "\t" + this.GreskaX.ToString() + "\t" + this.GreskaY.ToString() + "\t" + regijaPogreskeRacun.Centroid.ToString() + "\t" + pocetnaRegijaRacun.Area.ToString() + "\t" + regijaPogreskeRacun.Area.ToString() + "\t"+ postotak + "\r\n";
+            postotak = (float)Math.Round(((1 - postotak)*100),4);
+            float povrsinaPoc = (float)Math.Round(pocetnaRegijaRacun.Area, 4);
+            float povrsinaZav = (float)Math.Round(regijaPogreskeRacun.Area, 4);
+            float XzaIspis = (float)Math.Round(this.TrenX, 4);
+            float YzaIspis = (float)Math.Round(this.TrenY, 4);
+            zapis = this.IDDron.ToString() + "\t" + this.NazivDron.ToString() + "\t" + XzaIspis.ToString() + "\t" + YzaIspis.ToString() + "\t" + povrsinaPoc.ToString() + "\t" + povrsinaZav.ToString() + "\t"+ postotak + "\r\n";
             frmGlavna.listaRezultata.Add(zapis);
 
 

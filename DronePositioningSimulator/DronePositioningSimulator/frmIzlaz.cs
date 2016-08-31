@@ -23,6 +23,7 @@ namespace DronePositioningSimulator
         {
             this.DoubleBuffered = true;
             this.Paint += new PaintEventHandler(frmIzlaz_Paint);
+            
         }
 
         private void frmIzlaz_Paint(object sender, PaintEventArgs e)
