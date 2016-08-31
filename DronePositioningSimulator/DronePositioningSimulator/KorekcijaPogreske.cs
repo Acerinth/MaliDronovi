@@ -39,52 +39,6 @@ namespace DronePositioningSimulator
             return r;
         }
 
-        
-
-
-        // OVO NADOLJE MI VIŠE NE TREBA
-
-        /*public float izracunajKorigiraniX(float r, float x1, float y1, float xp, float yp) {
-            float x2;
-            float brojnik = (float)Math.Pow((xp - x1),2);
-            float nazivnik = (float)Math.Pow((yp - y1), 2) + (float)Math.Pow((xp - x1), 2);
-            float razlomak = brojnik / nazivnik;
-            float korijen = (float)Math.Sqrt((razlomak * Math.Pow(r, 2)));
-            x2 = korijen - x1;
-            return x2;
-        }
-
-        public float izracunajKorigiraniY(float x1, float x2, float y1, float xp, float yp)
-        {
-            float y2;
-            float brojnik = (x2 - x1) * (yp - y1);
-            float nazivnik = xp - x1;
-            y2 = brojnik / nazivnik + y1;
-            return y2;
-        }
-
-        public float izracunajProsjekX(List<tocka> l)
-        {
-            float suma = 0;
-            float prosjecniX;
-            foreach (tocka t in l)
-            {
-                suma += t.x;
-            }
-            prosjecniX = suma / l.Count;
-            return prosjecniX;
-        }
-
-        public float izracunajProsjekY(List<tocka> l)
-        {
-            float suma = 0;
-            float prosjecniY;
-            foreach (tocka t in l)
-            {
-                suma += t.y;
-            }
-            prosjecniY = suma / l.Count;
-            return prosjecniY;
-        } */
+       
     }
 }

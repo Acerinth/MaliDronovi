@@ -18,7 +18,7 @@ namespace DronePositioningSimulator
             this.okidacKretanja.Tick += new System.EventHandler(this.okidacKretanja_Tick);
         }
 
-        private void okidacKretanja_Tick(object sender, EventArgs e)
+        public void okidacKretanja_Tick(object sender, EventArgs e)
         {
             
         }
