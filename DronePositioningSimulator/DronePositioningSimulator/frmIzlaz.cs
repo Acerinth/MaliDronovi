@@ -23,7 +23,6 @@ namespace DronePositioningSimulator
         {
             this.DoubleBuffered = true;
             this.Paint += new PaintEventHandler(frmIzlaz_Paint);
-            
         }
 
         private void frmIzlaz_Paint(object sender, PaintEventArgs e)
@@ -55,18 +54,24 @@ namespace DronePositioningSimulator
                 
                 foreach (Region r in d.listaVijenaca)
                 {
-                    e.Graphics.FillRegion(System.Drawing.Brushes.MediumPurple, r);
+                    if (d.PrikazVijenaca)
+                    {
+                        e.Graphics.FillRegion(System.Drawing.Brushes.Beige, r);
+                    }
                 }
 
                 if (tmrDrawingTimer.Enabled == true)
                 {
-                    e.Graphics.FillRegion(System.Drawing.Brushes.MediumAquamarine, d.regijaPogreske);
+                    e.Graphics.FillRegion(System.Drawing.Brushes.LightBlue, d.regijaPogreske);
                 }
                     
                 foreach (System.Drawing.Drawing2D.GraphicsPath gp in d.listaElipsi)
                 {
-                    System.Drawing.Pen olovka = new System.Drawing.Pen(d.Boja);
-                    e.Graphics.DrawPath(olovka, gp);
+                    if (d.PrikazVijenaca)
+                    {
+                        System.Drawing.Pen olovka = new System.Drawing.Pen(d.Boja);
+                        e.Graphics.DrawPath(olovka, gp);
+                    }
                 }
             }
             
@@ -82,16 +87,6 @@ namespace DronePositioningSimulator
                 d.korigirajPogresku();
             }
             this.Refresh();
-        }
-
-        private void frmIzlaz_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            foreach (DronView d in DronView.listaDronova)
-            {
-                d.resetrirajTrenutno();
-                this.Controls.Remove(d);
-            }
-
         }
 
         public void pokaziDronove()

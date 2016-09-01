@@ -43,10 +43,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
             this.Location = new System.Drawing.Point(1100, 100);
+            this.MaximizeBox = false;
             this.Name = "frmIzlaz";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Output Window";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmIzlaz_FormClosed);
             this.Load += new System.EventHandler(this.frmIzlaz_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmIzlaz_Paint);
             this.ResumeLayout(false);

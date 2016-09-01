@@ -30,6 +30,7 @@ namespace DronePositioningSimulator
         public float TrenX { set; get; }
         public float TrenY { set; get; }
         public float TrenSmjer { set; get; }
+        public bool PrikazVijenaca { set; get; } = true;
         public Region regijaPogreske = new Region();
         private IGeometry pocRegijaPogreskeRacun;
         private IGeometry trenRegijaPogreskeRacun;

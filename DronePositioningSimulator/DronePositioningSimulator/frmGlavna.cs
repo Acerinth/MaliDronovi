@@ -37,7 +37,7 @@ namespace DronePositioningSimulator
             float.TryParse(txtPozY.Text, out pozY) &&
             float.TryParse(txtSmjerX.Text, out s) &&
             float.TryParse(txtBrzina.Text, out v)) {
-                if (s >= 0 && s <= 360)
+                if (s >= 0 && s <= 360 && v>=0 && v<=15)
                 {
                     return true;
                 }
@@ -64,20 +64,6 @@ namespace DronePositioningSimulator
             dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
             izlaz = new frmIzlaz();
             izlaz.Show();
-        }
-
-        private void rbRucno_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbRucno.Checked == true)
-            {
-                grpNoviDron.Enabled = true;
-                btnBoja.BackColor = Color.Black;
-            }
-            else
-            {
-                grpNoviDron.Enabled = false;
-                btnBoja.BackColor = Color.White;
-            }
         }
 
         private void btnSpremiDron_Click(object sender, EventArgs e)
@@ -133,7 +119,6 @@ namespace DronePositioningSimulator
 
         private void btnPokreni_Click(object sender, EventArgs e)
         {
-            
             izlaz.tmrDrawingTimer.Enabled = true;
             izlaz.tmrDrawingTimer.Start();
             omoguciPonovnoPokretanje(false);
@@ -143,6 +128,7 @@ namespace DronePositioningSimulator
         {
             this.btnObrisi.Enabled = y;
             this.btnPokreni.Enabled = y;
+            this.btnVijenci.Enabled = y;
         }
 
         private void omoguciPonovnoPokretanje (bool y)
@@ -152,6 +138,8 @@ namespace DronePositioningSimulator
             btnObrisi.Enabled = y;
             btnReset.Enabled = y;
             btnExport.Enabled = y;
+            btnSpremiDron.Enabled = y;
+            btnExit.Enabled = y;
         }
 
         private void btnPauziraj_Click(object sender, EventArgs e)
@@ -184,14 +172,21 @@ namespace DronePositioningSimulator
             MessageBox.Show("Uspješno spremljeno.", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void zatvoriToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        private void btnVijenci_Click(object sender, EventArgs e)
         {
-            
+            int index = dgvPostojeciDronovi.CurrentRow.Index;
+            DronView d = DronView.listaDronova.ElementAt(index);
+            d.PrikazVijenaca = !d.PrikazVijenaca;
         }
     }
 }
