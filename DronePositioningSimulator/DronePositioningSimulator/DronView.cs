@@ -334,7 +334,7 @@ namespace DronePositioningSimulator
             float XzaIspis = (float)Math.Round(this.TrenX, 4);
             float YzaIspis = (float)Math.Round(this.TrenY, 4);
 
-            zapis = this.IDDron.ToString() + "\t" + this.NazivDron.ToString() + "\t" + XzaIspis.ToString() + "\t" + YzaIspis.ToString() + "\t" + povrsinaPoc.ToString() + "\t" + povrsinaZav.ToString() + "\t"+ postotak + "\r\n";
+            zapis = this.IDDron.ToString() + ";" + this.NazivDron.ToString() + ";" + XzaIspis.ToString() + ";" + YzaIspis.ToString() + ";" + povrsinaPoc.ToString() + ";" + povrsinaZav.ToString() + ";"+ postotak;
             frmGlavna.listaRezultata.Add(zapis);
 
 

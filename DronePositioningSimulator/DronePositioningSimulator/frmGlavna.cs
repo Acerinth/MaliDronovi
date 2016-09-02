@@ -162,19 +162,19 @@ namespace DronePositioningSimulator
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            StreamWriter dat = new StreamWriter("rezultat.txt");
-            foreach (string z in listaRezultata)
-            {
-                dat.Write(z);
-            }
-            dat.Close();
-
-            MessageBox.Show("Uspješno spremljeno.", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            saveFileDialog1.ShowDialog();
         }
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            
+            StringBuilder csv = new StringBuilder();
+            csv.AppendLine("ID Drona;Naziv drona;Lokacija X;LokacijaY;GPS površina;Korigirana površina;Postotak poboljšanja");
+            foreach (string z in listaRezultata)
+            {
+                csv.AppendLine(z);
+            }
+            File.WriteAllText(saveFileDialog1.FileName, csv.ToString(), UTF8Encoding.UTF8);
+            MessageBox.Show("Uspješno spremljeno.", "Obavijest", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnExit_Click(object sender, EventArgs e)

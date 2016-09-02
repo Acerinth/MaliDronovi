@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.dgvPostojeciDronovi = new System.Windows.Forms.DataGridView();
+            this.IDDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NazivDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Y = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Boja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Brzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Smjer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpNoviDron = new System.Windows.Forms.GroupBox();
             this.btnBoja = new System.Windows.Forms.Button();
             this.txtBoja = new System.Windows.Forms.TextBox();
@@ -54,13 +61,6 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
-            this.IDDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NazivDron = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Y = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Boja = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Brzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Smjer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVijenci = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostojeciDronovi)).BeginInit();
             this.grpNoviDron.SuspendLayout();
@@ -85,6 +85,60 @@
             this.dgvPostojeciDronovi.ReadOnly = true;
             this.dgvPostojeciDronovi.Size = new System.Drawing.Size(753, 292);
             this.dgvPostojeciDronovi.TabIndex = 10;
+            // 
+            // IDDron
+            // 
+            this.IDDron.DataPropertyName = "IDDron";
+            this.IDDron.HeaderText = "ID";
+            this.IDDron.Name = "IDDron";
+            this.IDDron.ReadOnly = true;
+            this.IDDron.Width = 50;
+            // 
+            // NazivDron
+            // 
+            this.NazivDron.DataPropertyName = "NazivDron";
+            this.NazivDron.HeaderText = "Naziv";
+            this.NazivDron.Name = "NazivDron";
+            this.NazivDron.ReadOnly = true;
+            // 
+            // X
+            // 
+            this.X.DataPropertyName = "X";
+            this.X.HeaderText = "X";
+            this.X.Name = "X";
+            this.X.ReadOnly = true;
+            this.X.Width = 50;
+            // 
+            // Y
+            // 
+            this.Y.DataPropertyName = "Y";
+            this.Y.HeaderText = "Y";
+            this.Y.Name = "Y";
+            this.Y.ReadOnly = true;
+            this.Y.Width = 50;
+            // 
+            // Boja
+            // 
+            this.Boja.DataPropertyName = "Boja";
+            this.Boja.HeaderText = "Boja";
+            this.Boja.Name = "Boja";
+            this.Boja.ReadOnly = true;
+            // 
+            // Brzina
+            // 
+            this.Brzina.DataPropertyName = "Brzina";
+            this.Brzina.HeaderText = "Brzina";
+            this.Brzina.Name = "Brzina";
+            this.Brzina.ReadOnly = true;
+            this.Brzina.Width = 50;
+            // 
+            // Smjer
+            // 
+            this.Smjer.DataPropertyName = "Smjer";
+            this.Smjer.HeaderText = "Smjer";
+            this.Smjer.Name = "Smjer";
+            this.Smjer.ReadOnly = true;
+            this.Smjer.Width = 50;
             // 
             // grpNoviDron
             // 
@@ -305,7 +359,8 @@
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.DefaultExt = "txt";
+            this.saveFileDialog1.DefaultExt = "csv";
+            this.saveFileDialog1.Filter = "CSV file|*.csv";
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
             // label1
@@ -326,60 +381,6 @@
             this.btnExit.Text = "Izlaz";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // IDDron
-            // 
-            this.IDDron.DataPropertyName = "IDDron";
-            this.IDDron.HeaderText = "ID";
-            this.IDDron.Name = "IDDron";
-            this.IDDron.ReadOnly = true;
-            this.IDDron.Width = 50;
-            // 
-            // NazivDron
-            // 
-            this.NazivDron.DataPropertyName = "NazivDron";
-            this.NazivDron.HeaderText = "Naziv";
-            this.NazivDron.Name = "NazivDron";
-            this.NazivDron.ReadOnly = true;
-            // 
-            // X
-            // 
-            this.X.DataPropertyName = "X";
-            this.X.HeaderText = "X";
-            this.X.Name = "X";
-            this.X.ReadOnly = true;
-            this.X.Width = 50;
-            // 
-            // Y
-            // 
-            this.Y.DataPropertyName = "Y";
-            this.Y.HeaderText = "Y";
-            this.Y.Name = "Y";
-            this.Y.ReadOnly = true;
-            this.Y.Width = 50;
-            // 
-            // Boja
-            // 
-            this.Boja.DataPropertyName = "Boja";
-            this.Boja.HeaderText = "Boja";
-            this.Boja.Name = "Boja";
-            this.Boja.ReadOnly = true;
-            // 
-            // Brzina
-            // 
-            this.Brzina.DataPropertyName = "Brzina";
-            this.Brzina.HeaderText = "Brzina";
-            this.Brzina.Name = "Brzina";
-            this.Brzina.ReadOnly = true;
-            this.Brzina.Width = 50;
-            // 
-            // Smjer
-            // 
-            this.Smjer.DataPropertyName = "Smjer";
-            this.Smjer.HeaderText = "Smjer";
-            this.Smjer.Name = "Smjer";
-            this.Smjer.ReadOnly = true;
-            this.Smjer.Width = 50;
             // 
             // btnVijenci
             // 
