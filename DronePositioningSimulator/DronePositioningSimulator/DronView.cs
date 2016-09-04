@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media;
 using NetTopologySuite;
+using NetTopologySuite.Utilities;
+using NetTopologySuite.Geometries.Utilities;
 using GeoAPI.Geometries;
 
 namespace DronePositioningSimulator
@@ -67,7 +70,7 @@ namespace DronePositioningSimulator
             this.DoubleBuffered = true;
             this.Paint += new PaintEventHandler(DronView_Paint);
             regijaPogreske.MakeEmpty();
-            this.Location = new Point((int)this.X-this.Width/2, (int)this.Y-this.Height/2);
+            this.Location = new Point((int)this.X-this.Size.Width/2, (int)this.Y-this.Size.Height/2);
         }
 
         private void DronView_Paint(object sender, PaintEventArgs e)
@@ -78,6 +81,7 @@ namespace DronePositioningSimulator
             this.GreskaX = GeneratorGreske.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaX;
             this.GreskaY = GeneratorGreske.polje[Math.Abs((int)this.TrenX), Math.Abs((int)this.TrenY)].greskaY;
             e.Graphics.DrawEllipse(olovka, this.Size.Width / 2 - this.GreskaX, this.Size.Width / 2 - this.GreskaY, this.GreskaX * 2, this.GreskaY * 2);
+            //e.Graphics.DrawEllipse(olovka, this.TrenX - this.GreskaX, this.TrenY - this.GreskaY, this.GreskaX * 2, this.GreskaY * 2);
 
         }
 
@@ -241,20 +245,20 @@ namespace DronePositioningSimulator
         private void napraviRegijuPogreskeZaCrtanje()
         {
             regijaPogreske.MakeEmpty();
-            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            GraphicsPath gp = new GraphicsPath();
             gp.AddEllipse(this.TrenX - this.GreskaX, this.TrenY - this.GreskaY, this.GreskaX * 2, this.GreskaY * 2);
             regijaPogreske.Union(gp);
         }
 
         private void napraviRegijuPogreskeZaRacun()
         {
-            NetTopologySuite.Utilities.GeometricShapeFactory gsf = new NetTopologySuite.Utilities.GeometricShapeFactory();
+            GeometricShapeFactory gsf = new GeometricShapeFactory();
             gsf.Centre = new Coordinate(this.TrenX, this.TrenY);
             gsf.Height = this.GreskaY * 2;
             gsf.Width = this.GreskaX * 2;
             var pocetnaRegijaRacun = gsf.CeateEllipse();
 
-            NetTopologySuite.Geometries.Utilities.GeometryTransformer t = new NetTopologySuite.Geometries.Utilities.GeometryTransformer();
+            GeometryTransformer t = new GeometryTransformer();
             this.pocRegijaPogreskeRacun = t.Transform(pocetnaRegijaRacun);
             this.trenRegijaPogreskeRacun = this.pocRegijaPogreskeRacun;
         }
@@ -292,18 +296,18 @@ namespace DronePositioningSimulator
 
                 //mala elipsa
                 Region vijenac = new Region();
-                System.Drawing.Drawing2D.GraphicsPath gpeMala = new System.Drawing.Drawing2D.GraphicsPath();
+                GraphicsPath gpeMala = new GraphicsPath();
                 gpeMala.AddEllipse(malaTockaX, malaTockaY, maliRX * 2, maliRY * 2);
                 listaElipsi.Add(gpeMala);
 
-                NetTopologySuite.Utilities.GeometricShapeFactory gsf = new NetTopologySuite.Utilities.GeometricShapeFactory();
+                GeometricShapeFactory gsf = new GeometricShapeFactory();
                 gsf.Centre = new Coordinate(d.TrenX, d.TrenY);
                 gsf.Height = maliRY*2;
                 gsf.Width = maliRX*2;
                 var malaRacun = gsf.CeateEllipse();
 
                 //velika elipsa
-                System.Drawing.Drawing2D.GraphicsPath gpeVelika = new System.Drawing.Drawing2D.GraphicsPath();
+                GraphicsPath gpeVelika = new GraphicsPath();
                 gpeVelika.AddEllipse(velikaTockaX, velikaTockaY, velikiRX*2, velikiRY*2);
                 listaElipsi.Add(gpeVelika);
 
