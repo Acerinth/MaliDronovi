@@ -322,7 +322,6 @@ namespace DronePositioningSimulator
                 //intersect
                 regijaPogreske.Intersect(vijenac);
                 this.trenRegijaPogreskeRacun = trenRegijaPogreskeRacun.Intersection(vijenacRacun);
-
                 
             }
 
@@ -336,7 +335,6 @@ namespace DronePositioningSimulator
 
             zapis = this.IDDron.ToString() + ";" + this.NazivDron.ToString() + ";" + XzaIspis.ToString() + ";" + YzaIspis.ToString() + ";" + povrsinaPoc.ToString() + ";" + povrsinaZav.ToString() + ";"+ postotak;
             frmGlavna.listaRezultata.Add(zapis);
-
 
         }
 
