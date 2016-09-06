@@ -23,7 +23,6 @@ namespace DronePositioningSimulator
         float s;
         float v;
         public frmIzlaz izlaz;
-        //Okidac o = new Okidac();
 
         public frmGlavna()
         {
@@ -70,38 +69,39 @@ namespace DronePositioningSimulator
         {
             if (ProvjeriIspravnost())
             {
-                DronView noviDron = new DronView();
+                Dron noviDron = new Dron();
                 noviDron.postaviVrijednosti(id, pozX, pozY, btnBoja.BackColor, txtNazivDrona.Text, 0, 0, s, v);
-                DronView.listaDronova.Add(noviDron);
+                Dron.listaDronova.Add(noviDron);
                 
                 OcistiPolja();
-                dgvPostojeciDronovi.DataSource = DronView.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
+                dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
                 
             }
             else
             {
                 MessageBox.Show("Pogrešno uneseni podaci", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            if (DronView.listaDronova.Count > 0)
+            if (Dron.listaDronova.Count > 0)
             {
                 omoguciGumbe(true);
-                izlaz.pokaziDronove();
+                izlaz.Refresh();
+                //izlaz.pokaziDronove();
             }
         }
 
         private void btnObrisi_Click(object sender, EventArgs e)
         {
             int index = dgvPostojeciDronovi.CurrentRow.Index;
-            izlaz.Controls.Remove(DronView.listaDronova.ElementAt(index));
-            DronView.listaDronova.RemoveAt(index);
+            //izlaz.Controls.Remove(DronView.listaDronova.ElementAt(index));
+            Dron.listaDronova.RemoveAt(index);
             //dgvPostojeciDronovi.DataSource = Dron.listaDronova;
-            dgvPostojeciDronovi.DataSource = DronView.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
+            dgvPostojeciDronovi.DataSource = Dron.listaDronova.Select(l => new { IDDron = l.IDDron, NazivDron = l.NazivDron, X = l.X, Y = l.Y, Boja = l.Boja, Brzina = l.Brzina, Smjer = l.Smjer }).ToList();
             
-            if (DronView.listaDronova.Count > 0)
+            if (Dron.listaDronova.Count > 0)
             {
                 omoguciGumbe(true);
                 izlaz.Refresh();
-                izlaz.pokaziDronove();
+                //izlaz.pokaziDronove();
             }
             else
             {
@@ -152,12 +152,12 @@ namespace DronePositioningSimulator
         private void btnReset_Click(object sender, EventArgs e)
         {
             listaRezultata.Clear();
-            foreach (DronView d in DronView.listaDronova)
+            foreach (Dron d in Dron.listaDronova)
             {
                 d.resetrirajTrenutno();
             }
             izlaz.Refresh();
-            izlaz.pokaziDronove();
+            //izlaz.pokaziDronove();
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -185,7 +185,7 @@ namespace DronePositioningSimulator
         private void btnVijenci_Click(object sender, EventArgs e)
         {
             int index = dgvPostojeciDronovi.CurrentRow.Index;
-            DronView d = DronView.listaDronova.ElementAt(index);
+            Dron d = Dron.listaDronova.ElementAt(index);
             d.PrikazVijenaca = !d.PrikazVijenaca;
         }
     }

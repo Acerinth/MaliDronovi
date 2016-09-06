@@ -49,9 +49,8 @@ namespace DronePositioningSimulator
                 e.Graphics.DrawEllipse(olovka, d.TrenX- d.GreskaX, d.TrenY- d.GreskaY, d.GreskaX*2, d.GreskaY*2);
 
             } */
-            foreach (DronView d in DronView.listaDronova)
+            foreach (Dron d in Dron.listaDronova)
             {
-                
                 foreach (Region r in d.listaVijenaca)
                 {
                     if (d.PrikazVijenaca)
@@ -59,27 +58,35 @@ namespace DronePositioningSimulator
                         e.Graphics.FillRegion(System.Drawing.Brushes.Beige, r);
                     }
                 }
-
-                if (tmrDrawingTimer.Enabled == true)
-                {
-                    e.Graphics.FillRegion(System.Drawing.Brushes.LightBlue, d.regijaPogreske);
-                }
                     
                 foreach (System.Drawing.Drawing2D.GraphicsPath gp in d.listaElipsi)
                 {
                     if (d.PrikazVijenaca)
                     {
-                        System.Drawing.Pen olovka = new System.Drawing.Pen(d.Boja);
-                        e.Graphics.DrawPath(olovka, gp);
+                        System.Drawing.Pen olovka2 = new System.Drawing.Pen(d.Boja);
+                        e.Graphics.DrawPath(olovka2, gp);
                     }
                 }
+
+                if (tmrDrawingTimer.Enabled == true)
+                {
+                    e.Graphics.FillRegion(System.Drawing.Brushes.LightBlue, d.regijaPogreske);
+                }
+
+
+                SolidBrush boja = new SolidBrush(d.Boja);
+                System.Drawing.Pen olovka = new System.Drawing.Pen(d.Boja);
+                e.Graphics.FillEllipse(boja, d.TrenX - 5, d.TrenY - 5, 10, 10);
+                d.GreskaX = GeneratorGreske.polje[Math.Abs((int)d.TrenX), Math.Abs((int)d.TrenY)].greskaX;
+                d.GreskaY = GeneratorGreske.polje[Math.Abs((int)d.TrenX), Math.Abs((int)d.TrenY)].greskaY;
+                e.Graphics.DrawEllipse(olovka, d.TrenX - d.GreskaX, d.TrenY - d.GreskaY, d.GreskaX * 2, d.GreskaY * 2);
             }
             
         }
 
         private void tmrDrawingTimer_Tick(object sender, EventArgs e)
         {
-            foreach (DronView d in DronView.listaDronova)
+            foreach (Dron d in Dron.listaDronova)
             {
                 d.provjeriRub(this.ClientSize.Width-5, this.ClientSize.Height - 5);
                 d.pomakniDron();
@@ -89,7 +96,7 @@ namespace DronePositioningSimulator
             this.Refresh();
         }
 
-        public void pokaziDronove()
+        /*public void pokaziDronove()
         {
             foreach (DronView d in DronView.listaDronova)
             {
@@ -98,7 +105,7 @@ namespace DronePositioningSimulator
                     this.Controls.Add(d);
                 }
             }
-        }
+        }*/
         
        
     }
